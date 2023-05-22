@@ -1,14 +1,23 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_control_main",
-  "spriteId": null,
+  "name": "obj_player_vic",
+  "spriteId": {
+    "name": "spr_player_vic_idle_unarmed",
+    "path": "sprites/spr_player_vic_idle_unarmed/spr_player_vic_idle_unarmed.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,
-  "spriteMaskId": null,
-  "persistent": true,
-  "parentObjectId": null,
+  "spriteMaskId": {
+    "name": "spr_mask_square_16x16",
+    "path": "sprites/spr_mask_square_16x16/spr_mask_square_16x16.yy",
+  },
+  "persistent": false,
+  "parentObjectId": {
+    "name": "obj_parent_solid",
+    "path": "objects/obj_parent_solid/obj_parent_solid.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -24,11 +33,13 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":2,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "control",
-    "path": "folders/Objects/control.yy",
+    "name": "actor",
+    "path": "folders/Objects/actor.yy",
   },
 }
