@@ -2,6 +2,7 @@ if obj_control_main.gameMode == "gameplay"
 {
 	if !dead
 	{
+		//change sprites
 		//if moving, keep value but if still, count down to change sprite
 		if x != xprevious or y != yprevious
 		{

@@ -7,13 +7,13 @@
     "path": "sprites/spr_env_wall/spr_env_wall.yy",
   },
   "solid": false,
-  "visible": true,
+  "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_parent_solid",
-    "path": "objects/obj_parent_solid/obj_parent_solid.yy",
+    "name": "obj_parent_env",
+    "path": "objects/obj_parent_env/obj_parent_env.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -27,7 +27,10 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [],
+  "eventList": [
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
+  ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {

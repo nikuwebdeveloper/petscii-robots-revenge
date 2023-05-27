@@ -12,3 +12,6 @@ input_move_up_hold = false;
 input_move_down_hold = false;
 input_move_left_hold = false;
 input_move_right_hold = false;
+
+//player actions
+input_toggle_push = false;
