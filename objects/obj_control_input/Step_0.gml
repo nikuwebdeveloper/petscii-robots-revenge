@@ -8,6 +8,7 @@ input_move_down_press = keyboard_check_pressed(ord("S"));
 input_move_left_press = keyboard_check_pressed(ord("A"));
 input_move_right_press = keyboard_check_pressed(ord("D"));
 
+//prevents diagonals
 if input_move_up_press
 {
 	input_move_down_press = false;
@@ -40,7 +41,11 @@ input_move_left_hold = keyboard_check(ord("A"));
 input_move_right_hold = keyboard_check(ord("D"));
 
 //player_actions
-input_toggle_push = keyboard_check_pressed(ord("Q"))
+input_toggle_push = keyboard_check_pressed(ord("F"))
+input_use = keyboard_check_pressed(ord("E"))
+input_search = keyboard_check_pressed(ord("Q"))
+input_item_right = keyboard_check_pressed(ord("P"))
+input_item_left = keyboard_check_pressed(ord("O"))
 
 //user actions
 //quit game

@@ -22,3 +22,5 @@ topLayer = 0;
 grassLayer = 0;
 //initial tilemap ids
 tileIdGrass = 0;
+
+draw_set_font(font_yuGothic_10)

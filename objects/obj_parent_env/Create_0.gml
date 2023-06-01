@@ -1,8 +1,4 @@
 canMove = false;
-freeMoveUp = false;
-freeMoveRight = false;
-freeMoveDown = false;
-freeMoveLeft = false;
 item = "none";
 canSearch = "false";
 label = false;

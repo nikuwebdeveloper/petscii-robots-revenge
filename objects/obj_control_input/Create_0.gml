@@ -15,3 +15,7 @@ input_move_right_hold = false;
 
 //player actions
 input_toggle_push = false;
+input_search = false;
+input_use = false;
+input_item_right = false;
+input_item_left = false;

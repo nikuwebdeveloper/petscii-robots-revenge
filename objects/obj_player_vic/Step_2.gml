@@ -20,14 +20,14 @@ if obj_control_main.gameMode == "gameplay"
 		{
 			if dir == "up"
 			{
-				if currentWeapon == "none"
+				if obj_control_inventory.currentWeapon == "none"
 				{
 					sprite_index = spr_player_vic_walk_up_unarmed
 				}
 			}
 			else if dir == "down"
 			{
-				if currentWeapon == "none"
+				if obj_control_inventory.currentWeapon == "none"
 				{
 					sprite_index = spr_player_vic_walk_down_unarmed
 				}
@@ -38,14 +38,14 @@ if obj_control_main.gameMode == "gameplay"
 		{
 			if dir == "left"
 			{
-				if currentWeapon == "none"
+				if obj_control_inventory.currentWeapon == "none"
 				{
 					sprite_index = spr_player_vic_walk_left_unarmed
 				}
 			}
 			else if dir == "right"
 			{
-				if currentWeapon == "none"
+				if obj_control_inventory.currentWeapon == "none"
 				{
 					sprite_index = spr_player_vic_walk_right_unarmed
 				}
@@ -56,7 +56,7 @@ if obj_control_main.gameMode == "gameplay"
 		{
 			if timerStill == 0
 			{
-				if currentWeapon == "none"
+				if obj_control_inventory.currentWeapon == "none"
 				{
 					sprite_index = spr_player_vic_idle_unarmed
 				}

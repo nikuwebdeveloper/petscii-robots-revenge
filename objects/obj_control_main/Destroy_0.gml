@@ -1,0 +1,1 @@
+font_delete(font_yuGothic_10)
