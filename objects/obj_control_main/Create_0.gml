@@ -23,4 +23,11 @@ grassLayer = 0;
 //initial tilemap ids
 tileIdGrass = 0;
 
-draw_set_font(font_yuGothic_10)
+//enemy numbers
+enemyNumHoverbot = 0;
+enemyNumRollerbot = 0;
+enemyNumEvilbot = 0;
+enemyNumMoverbot = 0;
+enemyNumLaserbot = 0;
+
+draw_set_font(font_mincho_8);

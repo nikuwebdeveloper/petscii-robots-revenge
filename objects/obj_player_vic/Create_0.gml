@@ -1,5 +1,5 @@
 //health
-hp = 9;
+hp = 100;
 
 //facing direction
 dir = "up";

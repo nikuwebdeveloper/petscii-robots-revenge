@@ -1,0 +1,8 @@
+//weapons
+flame thrower
+
+//items
+spray paint
+slime
+berzerk
+mine

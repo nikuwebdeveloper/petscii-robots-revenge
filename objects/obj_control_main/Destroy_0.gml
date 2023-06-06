@@ -1,1 +1,1 @@
-font_delete(font_yuGothic_10)
+font_delete(font_mincho_8)

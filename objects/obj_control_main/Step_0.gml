@@ -22,7 +22,7 @@ if gameMode == "gameplay"
 	}
 }
 
-layer_depth("tile_wall_top", obj_player_vic.depth - 64)
+//layer_depth("tile_wall_top", obj_player_vic.depth - 64)
 
 if layer_exists("tile_middle")
 {
@@ -60,4 +60,13 @@ if layer_exists("tile_middle")
 			}
 		}
 	}
+}
+
+if instance_exists(obj_enemy_hoverbot)
+{
+	enemyNumHoverbot = instance_number(obj_enemy_hoverbot);
+	enemyNumRollerbot = instance_number(obj_enemy_rollerbot);
+	enemyNumEvilbot = instance_number(obj_enemy_evilbot);
+	enemyNumMoverbot = instance_number(obj_enemy_moverbot);
+	enemyNumLaserbot = instance_number(obj_enemy_moverbot);
 }

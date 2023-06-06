@@ -13,9 +13,9 @@ itemMagnet = false;
 itemBomb = false;
 
 //keys
-itemSpadeKey = true;
-itemHeartKey = true;
-itemDiamondKey = true;
+itemSpadeKey = false;
+itemHeartKey = false;
+itemDiamondKey = false;
 
 
 //item inventory add switch
@@ -39,7 +39,7 @@ itemEmpAdd = 5;
 itemMagnetAdd = 5;
 itemBombAdd = 5;
 
-weaponPistolAdd = 10;
+weaponPistolAdd = 30;
 weaponPlasmaAdd = 10;
 
 totalItemNum = 0; //how many total items

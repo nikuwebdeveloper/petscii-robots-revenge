@@ -47,7 +47,16 @@ input_search = keyboard_check_pressed(ord("Q"))
 input_item_right = keyboard_check_pressed(ord("P"))
 input_item_left = keyboard_check_pressed(ord("O"))
 
-//user actions
+//shooting
+input_shoot_up_press = keyboard_check_pressed(vk_up)
+input_shoot_down_press = keyboard_check_pressed(vk_down)
+input_shoot_left_press = keyboard_check_pressed(vk_left)
+input_shoot_right_press = keyboard_check_pressed(vk_right)
+
+
+//options
+input_f9 = keyboard_check_pressed(vk_f9)
+
 //quit game
 if input_escape
 {
