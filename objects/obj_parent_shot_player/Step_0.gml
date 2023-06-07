@@ -49,16 +49,17 @@ if place_meeting(x, y, obj_parent_solid)
 	var target = instance_place(x,y,obj_parent_enemy)
 	if instance_exists(target)
 	{
+		target.alertTarget = creator;
 		target.hp = target.hp - dmg;
 		if !target.pass //if can't pass
 		{
 			instance_destroy();
-			instance_create_depth(x,y,depth,obj_explosion)
+			instance_create_depth(x,y,depth,obj_effect_explosion)
 		}
 	}
 	else
 	{
 		instance_destroy();
-		instance_create_depth(x,y,depth,obj_explosion)
+		instance_create_depth(x,y,depth,obj_effect_explosion)
 	}
 }

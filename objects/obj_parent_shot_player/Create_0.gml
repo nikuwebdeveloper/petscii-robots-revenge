@@ -6,6 +6,7 @@ vspeed = 0;
 sprite_index = spr_empty;
 reachX = 0;
 reachY = 0;
+creator = obj_player_vic.id;
 
 if dir == "up"
 {

@@ -1,3 +1,4 @@
+//set direction
 if x == xprevious and y < yprevious
 {
 	dir = "up";

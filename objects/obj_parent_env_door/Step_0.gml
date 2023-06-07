@@ -1,4 +1,3 @@
-event_inherited();
 if object_index == obj_env_door_hori
 {
 	if obj_player_vic.y < y and distance_to_object(obj_player_vic) < 64

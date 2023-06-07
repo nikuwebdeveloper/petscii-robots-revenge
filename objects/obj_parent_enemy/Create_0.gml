@@ -1,10 +1,25 @@
 event_inherited();
 
+//direction facing
+dir = "up";
+
+//health
+hp = 1;
+
+//combat
+mode = "idle";
+confuseTimer = 0;
+confuseTimerMax = 30;
+stunTimer = 0;
+stunTimerMax = 30;
+attack = false;
+alertTarget = noone;
+spark = noone;
+deathSwitch = true;
+canMove = false;
+
 //shoot through
 pass = false;
-dir = "up";
-hp = 1;
-alert = true;
 
 //pathfinding
 path = 0;

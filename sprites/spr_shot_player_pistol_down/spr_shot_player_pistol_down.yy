@@ -2,7 +2,7 @@
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
   "name": "spr_shot_player_pistol_down",
-  "bboxMode": 1,
+  "bboxMode": 2,
   "collisionKind": 1,
   "type": 0,
   "origin": 4,

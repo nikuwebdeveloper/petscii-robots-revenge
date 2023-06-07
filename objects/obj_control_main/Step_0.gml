@@ -62,11 +62,15 @@ if layer_exists("tile_middle")
 	}
 }
 
-if instance_exists(obj_enemy_hoverbot)
+if countSwitch 
 {
-	enemyNumHoverbot = instance_number(obj_enemy_hoverbot);
-	enemyNumRollerbot = instance_number(obj_enemy_rollerbot);
-	enemyNumEvilbot = instance_number(obj_enemy_evilbot);
-	enemyNumMoverbot = instance_number(obj_enemy_moverbot);
-	enemyNumLaserbot = instance_number(obj_enemy_moverbot);
+	countSwitch = false;
+	if instance_exists(obj_parent_enemy)
+	{
+		enemyNumHoverbot = instance_number(obj_enemy_hoverbot);
+		enemyNumRollerbot = instance_number(obj_enemy_rollerbot);
+		enemyNumEvilbot = instance_number(obj_enemy_evilbot);
+		enemyNumMoverbot = instance_number(obj_enemy_moverbot);
+		enemyNumLaserbot = instance_number(obj_enemy_moverbot);
+	}
 }

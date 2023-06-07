@@ -1,4 +1,3 @@
-event_inherited();
 locked = false;
 open = false;
 switchOpen = true;

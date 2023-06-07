@@ -3,8 +3,7 @@ if obj_control_main.gameMode == "gameplay"
 	if !dead
 	{
 		//change sprites
-		//if moving, keep value but if still, count down to change sprite
-		if x != xprevious or y != yprevious
+		if x != xprevious or y != yprevious //if moving, keep value but if still, count down to change sprite
 		{
 			timerStill = 12;
 		}
@@ -100,6 +99,3 @@ if obj_control_main.gameMode == "gameplay"
 		}
 	}
 }
-
-				//if !obj_control_input.input_shoot_right_press and !obj_control_input.input_shoot_up_press and !obj_control_input.input_shoot_left_press and !obj_control_input.input_shoot_down_press
-				//{

@@ -10,6 +10,9 @@ timerStill = 10
 //current status
 dead = false
 
+//gib
+gibSwitch = true;
+
 //moves
 move = false;
 offMove = false;

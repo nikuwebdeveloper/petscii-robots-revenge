@@ -30,4 +30,6 @@ enemyNumEvilbot = 0;
 enemyNumMoverbot = 0;
 enemyNumLaserbot = 0;
 
+countSwitch = true;
+
 draw_set_font(font_mincho_8);

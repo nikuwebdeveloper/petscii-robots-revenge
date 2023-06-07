@@ -14,7 +14,15 @@ else
 if obj_control_inventory.currentWeapon == "weaponPistol"
 {
 	//draw ammo
-	func_text_outline(x + itemXPos+12, y + 35, obj_control_inventory.weaponPistolAmmo, c_lime, c_green)
+	if obj_control_inventory.weaponPistolAmmo <= 9
+	{
+		func_text_outline(x + itemXPos + 3, y + 35, "0"+string(obj_control_inventory.weaponPistolAmmo), c_lime, c_green)
+	}
+	else
+	{
+		func_text_outline(x + itemXPos + 3, y + 35, obj_control_inventory.weaponPistolAmmo, c_lime, c_green)
+	}
+	func_text_outline(x + itemXPos + 15, y + 35, "/99", c_lime, c_green) // /9
 }
 
 
@@ -88,12 +96,32 @@ if obj_control_inventory.totalItemNum > 0
 			}
 			break;			
 	}
-	func_text_outline(x + itemXPos+15, y + 89, itemNum, c_lime, c_green)
+
+	if itemNum <= 9
+	{
+		func_text_outline(x + itemXPos+2, y + 89, "0"+string(itemNum), c_lime, c_green)
+	}
+	else
+	{
+		func_text_outline(x + itemXPos+2, y + 89, itemNum, c_lime, c_green)
+	}
+	if obj_control_inventory.currentItem != "itemHealthPack"
+	{
+		func_text_outline(x + itemXPos+15, y + 89, "/10", c_lime, c_green)
+	}
+	else
+	{
+		func_text_outline(x + itemXPos+15, y + 89, "/99", c_lime, c_green)
+	}
 }
 draw_sprite(itemSprite, 0, x + itemXPos, y + 74);
 
 //healthbar
 var healthbarFrame = ceil(obj_player_vic.hp / 10)
+if obj_player_vic.hp <= 0
+{
+	healthbarFrame = 0;
+}
 draw_sprite(spr_ui_healthbar,healthbarFrame,x + itemXPos - 6, y + 186)
 
 //draw keys
