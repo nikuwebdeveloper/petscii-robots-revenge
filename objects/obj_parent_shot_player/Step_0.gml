@@ -19,47 +19,122 @@ else if dir == "right"
 	hspeed = sp;
 }
 
-if dir == "up"
+if object_index == obj_shot_player_pistol
 {
-	sprite_index = spr_shot_player_pistol_up;
-	reachX = 0;
-	reachY = -16
+	if dir == "up"
+	{
+		sprite_index = spr_shot_player_pistol_up;
+		reachX = 0;
+		reachY = -16
+	}
+	else if dir == "down"
+	{
+		sprite_index = spr_shot_player_pistol_down;
+		reachX = 0;
+		reachY = 16;
+	}
+	else if dir == "left"
+	{
+		sprite_index = spr_shot_player_pistol_left;
+		reachX = -16;
+		reachY = 0;
+	}
+	else if dir == "right"
+	{
+		sprite_index = spr_shot_player_pistol_right;
+		reachX = 16;
+		reachY = 0;
+	}
 }
-else if dir == "down"
+else if object_index == obj_shot_player_plasma
 {
-	sprite_index = spr_shot_player_pistol_down;
-	reachX = 0;
-	reachY = 16;
-}
-else if dir == "left"
-{
-	sprite_index = spr_shot_player_pistol_left;
-	reachX = -16;
-	reachY = 0;
-}
-else if dir == "right"
-{
-	sprite_index = spr_shot_player_pistol_right;
-	reachX = 16;
-	reachY = 0;
+	if dir == "up"
+	{
+		reachX = 0;
+		reachY = -16
+	}
+	else if dir == "down"
+	{
+		reachX = 0;
+		reachY = 16;
+	}
+	else if dir == "left"
+	{
+		reachX = -16;
+		reachY = 0;
+	}
+	else if dir == "right"
+	{
+		reachX = 16;
+		reachY = 0;
+	}
 }
 
-if place_meeting(x, y, obj_parent_solid)
+if object_index == obj_shot_player_pistol
 {
-	var target = instance_place(x,y,obj_parent_enemy)
-	if instance_exists(target)
+	if place_meeting(x, y, obj_parent_solid) or place_meeting(x+reachX, y+reachY, obj_parent_enemy)
 	{
-		target.alertTarget = creator;
-		target.hp = target.hp - dmg;
-		if !target.pass //if can't pass
+		var target = instance_place(x,y,obj_parent_enemy)
+		var targetEnv = instance_place(x,y,obj_parent_env)
+		if instance_exists(target)
+		{
+			target.alertTarget = creator;
+			target.hp = target.hp - dmg;
+			if !target.pass //if can't pass
+			{
+				instance_destroy();
+				instance_create_depth(x,y,depth,obj_effect_explosion)
+			}
+		}
+		else
+		{
+			instance_destroy();
+			instance_create_depth(x,y,depth,obj_effect_explosion)
+		}
+		if instance_exists(targetEnv)
+		{
+			targetEnv.hp = targetEnv.hp - dmg;
+			if !targetEnv.pass //if can't pass
+			{
+				instance_destroy();
+				instance_create_depth(x,y,depth,obj_effect_explosion)
+			}
+		}
+		else
 		{
 			instance_destroy();
 			instance_create_depth(x,y,depth,obj_effect_explosion)
 		}
 	}
-	else
+}
+else if object_index == obj_shot_player_plasma
+{
+	if place_meeting(x+reachX,y+reachY,obj_parent_env) 
 	{
+		var target = instance_place(x+reachX,y+reachY,obj_parent_env)
+		if instance_exists(target)
+		{
+			if !target.pass //if can't pass
+			{
+				func_explosion("plasma");
+			}
+		}
 		instance_destroy();
-		instance_create_depth(x,y,depth,obj_effect_explosion)
+	}
+	else if place_meeting(x,y,obj_parent_actor)
+	{
+		if place_meeting(x,y,obj_parent_actor) 
+		{
+			var target = instance_place(x,y,obj_parent_actor)
+			if instance_exists(target)
+			{
+				if !target.pass //if can't pass
+				{
+					func_explosion("plasma");
+				}
+			}
+			instance_destroy();
+		}
 	}
 }
+

@@ -1,6 +1,6 @@
 dmg = 0;
 mask_index = spr_mask_square_16x16
-if object_index == obj_effect_explosion_damage
+if object_index == obj_effect_explosion_damage or object_index == obj_effect_plasma
 {
 	dmg = 25;
 	if place_meeting(x,y,obj_parent_solid)

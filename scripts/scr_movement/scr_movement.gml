@@ -1,3 +1,27 @@
+function func_reach(dir)
+{
+	if dir == "up"
+	{
+		reachX = 0;
+		reachY = -16
+	}
+	else if dir == "down"
+	{
+		reachX = 0;
+		reachY = 16;
+	}
+	else if dir == "left"
+	{
+		reachX = -16;
+		reachY = 0;
+	}
+	else if dir == "right"
+	{
+		reachX = 16;
+		reachY = 0;
+	}
+}
+
 function func_move_push(dir, mover, partner, reachX, reachY)
 {
 	if place_empty(x+reachX,y+reachY, obj_parent_solid) or place_meeting(x+reachX,y+reachY, partner)

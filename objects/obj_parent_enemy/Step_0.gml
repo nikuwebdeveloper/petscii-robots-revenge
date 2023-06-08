@@ -19,7 +19,7 @@ if obj_control_main.gameMode == "gameplay"
 			{
 				if distance_to_object(alertTarget) >= 16
 				{
-					//find all instances that aren't me or my type and add them to the mp grid
+					//find all enemies and add them to the grid if they're not you
 					var numInstances = instance_number(obj_parent_enemy);
 					for (var i = 0; i < numInstances; i++) 
 					{
@@ -29,25 +29,27 @@ if obj_control_main.gameMode == "gameplay"
 							mp_grid_add_instances(grid, instance, false);
 						}
 					}
+					//add locked doors
 					var numInstanceDoor = instance_number(obj_parent_env_door);
 					for (var i = 0; i < numInstanceDoor; i++) 
 					{
 					   var instance = instance_find(obj_parent_env_door, i);
-						if !instance.locked
+						if instance.locked
 						{
 							mp_grid_add_instances(grid, instance, false);
 						}
 					}
+					//add all environmental objects
 					mp_grid_add_instances(grid, obj_parent_env, false); //environmental objects
 				
-					if mp_grid_path(grid, path, x, y, alertTarget.x,alertTarget.y, false) //if path possible
+					if mp_grid_path(grid, path, x, y, alertTarget.x,alertTarget.y, false) //if path is possible
 					{
 						path_start(path, 16, path_action_stop, false);
 					}
 				}
 				else
 				{
-					mode = "attack";
+					mode = "attack"; //attack if you're within range
 				}
 			}
 			else if mode == "attack"

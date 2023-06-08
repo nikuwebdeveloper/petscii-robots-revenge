@@ -1,4 +1,4 @@
-function func_explosion(parent, size)
+function func_explosionX(parent, size)
 {
 	var drawExp = true;
 

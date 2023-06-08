@@ -1,4 +1,3 @@
-event_inherited();
 if obj_control_main.gameMode == "gameplay"
 {
 	if !dead

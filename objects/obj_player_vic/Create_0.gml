@@ -16,6 +16,15 @@ gibSwitch = true;
 //moves
 move = false;
 offMove = false;
+offMoveUp = false;
+offMoveDown = false;
+offMoveLeft = false;
+offMoveRight = false;
+errorMove = false;
+
+
+//offshot
+offShoot = false;
 
 //tile draw
 layer_wall_top = layer_get_id("tile_wall_top");
@@ -33,3 +42,6 @@ pushTargetBlocked = false;
 
 //search target
 searchTarget = noone;
+
+currentDir = "up";
+pushDir = "up";

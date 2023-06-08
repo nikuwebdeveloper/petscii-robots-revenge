@@ -44,8 +44,10 @@ input_move_right_hold = keyboard_check(ord("D"));
 input_toggle_push = keyboard_check_pressed(ord("F"))
 input_use = keyboard_check_pressed(ord("E"))
 input_search = keyboard_check_pressed(ord("Q"))
-input_item_right = keyboard_check_pressed(ord("P"))
-input_item_left = keyboard_check_pressed(ord("O"))
+input_item_right = keyboard_check_pressed(ord("L"))
+input_item_left = keyboard_check_pressed(ord("K"))
+input_weapon_right = keyboard_check_pressed(ord("P"))
+input_weapon_left = keyboard_check_pressed(ord("O"))
 
 //shooting
 input_shoot_up_press = keyboard_check_pressed(vk_up)

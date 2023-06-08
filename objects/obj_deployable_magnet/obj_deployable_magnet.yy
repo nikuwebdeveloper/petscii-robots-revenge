@@ -35,7 +35,7 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "item",
-    "path": "folders/Sprites/ui/item.yy",
+    "name": "Objects",
+    "path": "folders/Objects.yy",
   },
 }

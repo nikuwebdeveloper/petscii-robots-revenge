@@ -124,72 +124,156 @@ if obj_control_main.gameMode == "gameplay"
 			if pushTarget != noone
 			{
 				pushTarget = noone;
+				dir = pushDir;
 			}
 			else
 			{
+				pushDir = dir;
 				pushTarget = instance_place(x + reachX, y + reachY, obj_parent_solid)
-				if !pushTarget.canMove
+				if pushTarget != noone
 				{
-					pushTarget = noone;
+					if !pushTarget.canMove
+					{
+						pushTarget = noone;
+					}
 				}
 			}
 		}
-		//decide movement direction
-		if obj_control_input.input_move_up_press or obj_control_input.input_move_up_hold
-		{
-			dir = "up";
-			move = true;
-		}
-		else if obj_control_input.input_move_down_press or obj_control_input.input_move_down_hold
-		{
-			dir = "down";
-			move = true;
-		}
-		else if obj_control_input.input_move_left_press or obj_control_input.input_move_left_hold
-		{
-			dir = "left";
-			move = true;
-		}
-		else if obj_control_input.input_move_right_press or obj_control_input.input_move_right_hold
-		{
-			dir = "right";
-			move = true;
-		}
 		
-		//turn off moves if not touching anything
-		if !obj_control_input.input_move_up_press and !obj_control_input.input_move_up_hold and
-		!obj_control_input.input_move_down_press and !obj_control_input.input_move_down_hold and
-		!obj_control_input.input_move_left_press and !obj_control_input.input_move_left_hold and
-		!obj_control_input.input_move_right_press and !obj_control_input.input_move_right_hold
-		{
-			offMove = false;
-			move = false;
-		}
-		
+		//if obj_control_input.input_move_up_hold
+		//{
+		//	dir = "up";
+		//}
+		//else if obj_control_input.input_move_down_hold
+		//{
+		//	dir = "down";
+		//}
+		//else if obj_control_input.input_move_left_hold
+		//{
+		//	dir = "left";
+		//}
+		//else if obj_control_input.input_move_right_hold
+		//{
+		//	dir = "right";
+		//}
 		//actual move
-		if move or offMove
+		//if !obj_control_main.tick
+		//{
+		//	if !obj_control_input.input_move_up_hold and !obj_control_input.input_move_down_hold
+		//	and !obj_control_input.input_move_right_hold and !obj_control_input.input_move_left_hold
+		//	{
+		//		move = false;
+		//	}
+		//	else if obj_control_input.input_move_up_hold or obj_control_input.input_move_down_hold
+		//	or obj_control_input.input_move_right_hold or obj_control_input.input_move_left_hold
+		//	{
+		//		move = true;
+		//	}
+		//}
+		if !obj_control_main.tick
 		{
-			if obj_control_main.tick
+			if obj_control_input.input_move_up_press
 			{
-				func_move_push(dir, id, pushTarget, reachX, reachY)
-				move = false;
-				offMove = false;
+				dir = "up";
+				func_reach(dir);
+				offMoveUp = true;
+				offMoveDown = false;
+				offMoveLeft = false;
+				offMoveRight = false;
 			}
-			else
+			else if obj_control_input.input_move_down_press
 			{
-				offMove = true;
+				dir = "down";
+				func_reach(dir);
+				offMoveUp = false;
+				offMoveDown = true;
+				offMoveLeft = false;
+				offMoveRight = false;
+			}
+			else if obj_control_input.input_move_left_press
+			{
+				dir = "left";
+				func_reach(dir);
+				offMoveUp = false;
+				offMoveDown = false;
+				offMoveLeft = true;
+				offMoveRight = false;
+			}
+			else if obj_control_input.input_move_right_press
+			{
+				dir = "right";
+				func_reach(dir);
+				offMoveUp = false;
+				offMoveDown = false;
+				offMoveLeft = false;
+				offMoveRight = true;
 			}
 		}
+		else if obj_control_main.tick
+		{
+			if obj_control_input.input_move_up_hold or offMoveUp
+			{
+				dir = "up";
+				func_reach(dir);
+				func_move_push(dir, id, pushTarget, reachX, reachY) 
+				offMoveUp = false;
+			}
+			 else if obj_control_input.input_move_down_hold or offMoveDown
+			{
+				dir = "down";
+				func_reach(dir);
+				func_move_push(dir, id, pushTarget, reachX, reachY)
+				offMoveDown = false;
+			}
+			else if obj_control_input.input_move_left_hold  or offMoveLeft
+			{
+				dir = "left";
+				func_reach(dir);
+				func_move_push(dir, id, pushTarget, reachX, reachY)
+				offMoveLeft = false;
+			}
+			else if obj_control_input.input_move_right_hold  or offMoveRight
+			{
+				dir = "right";
+				func_reach(dir);
+				func_move_push(dir, id, pushTarget, reachX, reachY) 
+				offMoveRight = false;
+			}
+			//if (obj_control_input.input_move_up_hold or obj_control_input.input_move_down_hold
+			//or obj_control_input.input_move_right_hold or obj_control_input.input_move_left_hold) or move
+			//{
+				
+				//move = false;
+			//if move
+			//{
+			//	//func_move_push(dir, id, pushTarget, reachX, reachY)}
+			//}
+			//}
+		}
+
+		//shooting
 		if obj_control_inventory.currentWeapon != "none"
 		{
-			//shoot
+			//shooting directions
 			if obj_control_input.input_shoot_up_press
 			{
-				if obj_control_inventory.weaponPistolAmmo > 0
+				if obj_control_inventory.currentWeapon == "weaponPistol"
 				{
-					var target = instance_create_depth(x,y-16,depth,obj_shot_player_pistol)
-					target.dir = "up";
-					obj_control_inventory.weaponPistolAmmo--;
+					if obj_control_inventory.weaponPistolAmmo > 0
+					{
+						var target = instance_create_depth(x,y-16,depth,obj_shot_player_pistol)
+						target.dir = "up";
+						obj_control_inventory.weaponPistolAmmo--;
+					}
+				}
+				else if obj_control_inventory.currentWeapon == "weaponPlasma"
+				{
+					if obj_control_inventory.weaponPlasmaAmmo > 0
+					{
+						var target = instance_create_depth(x,y-16,depth,obj_shot_player_plasma)
+						target.dir = "up";
+						obj_control_inventory.weaponPlasmaAmmo--;
+					}
 				}
 				dir = "up";
 				sprite_index = spr_player_vic_idle_pistol
@@ -197,11 +281,23 @@ if obj_control_main.gameMode == "gameplay"
 			}
 			if obj_control_input.input_shoot_down_press
 			{
-				if obj_control_inventory.weaponPistolAmmo > 0
+				if obj_control_inventory.currentWeapon == "weaponPistol"
 				{
-					var target = instance_create_depth(x,y+16,depth,obj_shot_player_pistol)
-					target.dir = "down";
-					obj_control_inventory.weaponPistolAmmo--;
+					if obj_control_inventory.weaponPistolAmmo > 0
+					{
+						var target = instance_create_depth(x,y+16,depth,obj_shot_player_pistol)
+						target.dir = "down";
+						obj_control_inventory.weaponPistolAmmo--;
+					}
+				}
+				else if obj_control_inventory.currentWeapon == "weaponPlasma"
+				{
+					if obj_control_inventory.weaponPlasmaAmmo > 0
+					{
+						var target = instance_create_depth(x,y+16,depth,obj_shot_player_plasma)
+						target.dir = "down";
+						obj_control_inventory.weaponPlasmaAmmo--;
+					}
 				}
 				dir = "down";
 				sprite_index = spr_player_vic_idle_pistol
@@ -209,11 +305,23 @@ if obj_control_main.gameMode == "gameplay"
 			}
 			if obj_control_input.input_shoot_left_press
 			{
-				if obj_control_inventory.weaponPistolAmmo > 0
+				if obj_control_inventory.currentWeapon == "weaponPistol"
 				{
-					var target = instance_create_depth(x-16,y,depth,obj_shot_player_pistol)
-					target.dir = "left";
-					obj_control_inventory.weaponPistolAmmo--;
+					if obj_control_inventory.weaponPistolAmmo > 0
+					{
+						var target = instance_create_depth(x-16,y,depth,obj_shot_player_pistol)
+						target.dir = "left";
+						obj_control_inventory.weaponPistolAmmo--;
+					}
+				}
+				else if obj_control_inventory.currentWeapon == "weaponPlasma"
+				{
+					if obj_control_inventory.weaponPlasmaAmmo > 0
+					{
+						var target = instance_create_depth(x-16,y,depth,obj_shot_player_plasma)
+						target.dir = "left";
+						obj_control_inventory.weaponPlasmaAmmo--;
+					}
 				}
 				dir = "left";
 				sprite_index = spr_player_vic_idle_pistol
@@ -221,11 +329,23 @@ if obj_control_main.gameMode == "gameplay"
 			}
 			if obj_control_input.input_shoot_right_press
 			{
-				if obj_control_inventory.weaponPistolAmmo > 0
+				if obj_control_inventory.currentWeapon == "weaponPistol"
 				{
-					var target = instance_create_depth(x+16,y,depth,obj_shot_player_pistol)
-					target.dir = "right";
-					obj_control_inventory.weaponPistolAmmo--;
+					if obj_control_inventory.weaponPistolAmmo > 0
+					{
+						var target = instance_create_depth(x+16,y,depth,obj_shot_player_pistol)
+						target.dir = "right";
+						obj_control_inventory.weaponPistolAmmo--;
+					}
+				}
+				else if obj_control_inventory.currentWeapon == "weaponPlasma"
+				{
+					if obj_control_inventory.weaponPlasmaAmmo > 0
+					{
+						var target = instance_create_depth(x+16,y,depth,obj_shot_player_plasma)
+						target.dir = "right";
+						obj_control_inventory.weaponPlasmaAmmo--;
+					}
 				}
 				dir = "right";
 				sprite_index = spr_player_vic_idle_pistol
@@ -233,7 +353,7 @@ if obj_control_main.gameMode == "gameplay"
 			}
 		}
 	}
-	else
+	else //if dead
 	{
 		if hp < -75
 		{
