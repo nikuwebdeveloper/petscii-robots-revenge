@@ -1,9 +1,7 @@
-locked = false;
-open = false;
-switchOpen = true;
+locked = false
 key = "none";
 image_speed = 0;
-pass = false;
+
 
 if object_index == obj_env_door_hori
 {

@@ -64,3 +64,22 @@ function func_move_empty(dir, reachX, reachY)
 		y = y + reachY;
 	}
 }
+
+function func_blast_move(xx,yy, i)
+{
+	var target = collision_line(x,y,x+(xx*i),y+(yy*i),obj_parent_env,false,true)
+	if instance_exists(target)
+	{
+		with (target)
+		{
+			if canMove
+			{
+				if place_empty(x+xx,y+yy,obj_parent_solid)
+				{
+					x = x + xx;
+					y = y + yy;
+				}
+			}
+		}
+	}
+}

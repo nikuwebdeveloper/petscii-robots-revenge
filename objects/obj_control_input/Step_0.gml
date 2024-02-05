@@ -2,7 +2,31 @@
 input_escape = keyboard_check_pressed(vk_escape);
 input_restart = keyboard_check_pressed(vk_f1);
 
+//////Android code
+//// Horizontal movement
+//var hInput = gamepad_axis_value(0, gp_axislh); // Get horizontal input from virtual joystick
+//if (hInput > 0)
+//{
+//    x += moveSpeed; // Move right
+//}
+//else if (hInput < 0)
+//{
+//    x -= moveSpeed; // Move left
+//}
+
+//// Vertical movement
+//var vInput = gamepad_axis_value(0, gp_axislv); // Get vertical input from virtual joystick
+//if (vInput > 0)
+//{
+//    y += moveSpeed; // Move down
+//}
+//else if (vInput < 0)
+//{
+//    y -= moveSpeed; // Move up
+//}
+
 //move press
+
 input_move_up_press = keyboard_check_pressed(ord("W"));
 input_move_down_press = keyboard_check_pressed(ord("S"));
 input_move_left_press = keyboard_check_pressed(ord("A"));

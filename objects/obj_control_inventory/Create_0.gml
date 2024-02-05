@@ -1,9 +1,9 @@
 //Vic's current weapon
 currentWeapon = "none";
-currentItem = "none";
+currentItem = "pistol";
 
 //weapon inventory
-weaponPistol = false;
+weaponPistol = true;
 weaponPlasma = false;
 
 //item inventory
@@ -30,7 +30,7 @@ itemEmpStock = 0;
 itemMagnetStock = 0;
 itemBombStock = 0;
 
-weaponPistolAmmo = 0;
+weaponPistolAmmo = 99;
 weaponPlasmaAmmo = 0;
 
 //item add

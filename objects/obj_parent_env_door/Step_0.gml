@@ -1,49 +1,29 @@
-depth = -y-x
-//if object_index == obj_env_door_hori
-//{
-//	if obj_player_vic.y < y and distance_to_object(obj_player_vic) < 64
-//	{
-//		depth = obj_player_vic.y - 1000
-//	}
-//}
-//else if object_index == obj_env_door_vert and distance_to_object(obj_player_vic) < 64
-//{
-//	if obj_player_vic.x > x 
-//	{
-//		depth = obj_player_vic.y + 16
-//	}
-//}
-
-if distance_to_object(obj_parent_actor) < 64
+if !locked
 {
-	open = true;
-	if switchOpen
+	if distance_to_object(obj_player_vic) < 48
 	{
-		switchOpen = false;
-		image_index = 0;
+		if image_index != image_number - 1
+		{
+			image_speed = 1
+		}
+		else
+		{
+			image_speed = 0
+		}
+	}
+	else
+	{
+		if image_index != 0
+		{
+			image_speed = -1
+		}
+		else
+		{
+			image_speed = 0
+		}
 	}
 }
 else
 {
-	open = false;
-}
-
-if open
-{
-	pass = true;
-	image_speed = 1;
-	if image_index >= 4
-	{
-		image_speed = 0;
-	}
-}
-else if !open
-{
-	pass = false;
-	switchOpen = true;
-	image_speed = 1;
-	if image_index >= 7
-	{
-		image_speed = 0;
-	}
+	mask_index = spr_env_door_hori_mask_locked
 }

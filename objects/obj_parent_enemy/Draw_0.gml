@@ -1,3 +1,3 @@
 event_inherited();
 draw_self();
-//draw_text(x+8,y+8,hp);
+//draw_text(x-4,y+8,hp);

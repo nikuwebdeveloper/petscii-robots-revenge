@@ -3,7 +3,6 @@ sp = 16;
 dmg = 1;
 hspeed = 0;
 vspeed = 0;
-sprite_index = spr_empty;
 reachX = 0;
 reachY = 0;
 creator = obj_player_vic.id;

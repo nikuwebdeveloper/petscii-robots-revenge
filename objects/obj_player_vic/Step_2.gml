@@ -1,8 +1,10 @@
 event_inherited();
 if obj_control_main.gameMode == "gameplay"
 {
-	if !dead
+	
+	if !dead and !teleport
 	{
+		
 		//change sprites
 		if x != xprevious or y != yprevious //if moving, keep value but if still, count down to change sprite
 		{
@@ -28,7 +30,7 @@ if obj_control_main.gameMode == "gameplay"
 					}
 					else
 					{
-						sprite_index = spr_player_vic_walk_up_pistol
+
 					}
 				}
 				else if dir == "down"
@@ -39,7 +41,7 @@ if obj_control_main.gameMode == "gameplay"
 					}
 					else
 					{
-						sprite_index = spr_player_vic_walk_down_pistol
+						//sprite_index = spr_player_vic_walk_down_pistol
 					}	
 				}
 			}
@@ -54,7 +56,7 @@ if obj_control_main.gameMode == "gameplay"
 					}
 					else
 					{
-						sprite_index = spr_player_vic_walk_left_pistol
+						//sprite_index = spr_player_vic_walk_left_pistol
 					}		
 				}
 				else if dir == "right"
@@ -65,7 +67,7 @@ if obj_control_main.gameMode == "gameplay"
 					}
 					else
 					{
-						sprite_index = spr_player_vic_walk_right_pistol
+						//sprite_index = spr_player_vic_walk_right_pistol
 					}
 				}			
 			}
@@ -73,10 +75,33 @@ if obj_control_main.gameMode == "gameplay"
 			{
 				if timerStill == 0
 				{
-					sprite_index = spr_player_vic_idle_unarmed;
+					if obj_control_inventory.currentWeapon == "none"
+					{
+						sprite_index = spr_player_vic_idle_unarmed;
+					}
+					else
+					{
+						//sprite_index = spr_player_vic_idle_pistol;
+					}
 					if dir == "up"
 					{
-						image_index = 0;
+						image_index = 1; //second frame is still
+						if obj_control_input.input_shoot_up_press
+						{
+							sprite_index = spr_player_vic_walk_up_pistol
+						}
+						else if obj_control_input.input_shoot_down_press
+						{
+							sprite_index = spr_player_vic_walk_up_shoot_down
+						}
+						else if  obj_control_input.input_shoot_left_press
+						{
+							sprite_index = spr_player_vic_walk_up_shoot_left
+						}
+						else if  obj_control_input.input_shoot_right_press
+						{
+							sprite_index = spr_player_vic_walk_up_shoot_right
+						}
 					}
 					if dir == "right"
 					{
@@ -89,7 +114,8 @@ if obj_control_main.gameMode == "gameplay"
 					if dir == "left"
 					{
 						image_index = 3;
-					}					
+					}	
+					
 				}
 			}
 			

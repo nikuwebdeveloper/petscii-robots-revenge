@@ -1,14 +1,24 @@
 //health
 hp = 100;
-
+pass = false;
+bulletDepth = -3299;
 //facing direction
 dir = "up";
+
+//hazard pit
+fallSwitch = -1
+hazardFallObj = noone
+
+layerID = layer_get_id("layer_hazard")
+tilemap = layer_tilemap_get_id(layerID)
 
 //idle animation counter
 timerStill = 10
 
 //current status
 dead = false
+deathTimer = 0;
+deathTimerMax = 60*5
 
 //gib
 gibSwitch = true;
@@ -45,3 +55,5 @@ searchTarget = noone;
 
 currentDir = "up";
 pushDir = "up";
+
+teleport = false;

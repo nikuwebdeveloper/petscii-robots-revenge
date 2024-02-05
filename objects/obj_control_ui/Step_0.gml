@@ -61,7 +61,21 @@ if newLine != ""
 	arrayLog[2] = newLine;
 	newLine = "";
 }
-
+if instance_exists(obj_player_vic)
+{
+	if obj_player_vic.hp <= 15
+	{
+		if switchWarning
+		{
+			switchWarning = false;
+			newLine = "WARNING! USER DEATH IMMINENT!"
+		}
+	}
+	else
+	{
+		switchWarning = true;
+	}
+}
 //radar
 if radar
 {
@@ -69,12 +83,15 @@ if radar
 	{
 		radar = false;
 	}
-	with(obj_player_vic)
+	if instance_exists(obj_player_vic)
 	{
-		var target = instance_nearest(obj_player_vic.x, obj_player_vic.y, obj_parent_enemy)
-		if distance_to_object(target) < room_width
+		with(obj_player_vic)
 		{
-			other.targetDir = point_direction(obj_player_vic.x, obj_player_vic.y, target.x, target.y);
+			var target = instance_nearest(obj_player_vic.x, obj_player_vic.y, obj_parent_enemy)
+			if distance_to_object(target) < room_width
+			{
+				other.targetDir = point_direction(obj_player_vic.x, obj_player_vic.y, target.x, target.y);
+			}
 		}
 	}
 }

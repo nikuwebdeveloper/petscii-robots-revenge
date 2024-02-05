@@ -1,0 +1,1 @@
+depth = obj_player_vic.depth + 32

@@ -11,7 +11,7 @@ if object_index == obj_effect_explosion_damage or object_index == obj_effect_pla
 		{
 			targetActor.hp = targetActor.hp - dmg;
 		}
-		else if instance_exists(targetEnv)
+		if instance_exists(targetEnv)
 		{
 			targetEnv.hp = targetEnv.hp - dmg;
 		}
