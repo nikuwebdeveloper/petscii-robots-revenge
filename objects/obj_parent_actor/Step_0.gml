@@ -1,27 +1,30 @@
-if obj_control_main.gameMode == "gameplay"
+if object_index == obj_player_vic
 {
-	if !dead
+	if obj_main.gameMode == GAMEMODE.GAMEPLAY
 	{
-		//x and y distance for player's "reach" in front of them
-		if dir == "up"
+		if alive
 		{
-			reachY = -16;
-			reachX = 0;
-		}
-		else if dir == "down"
-		{
-			reachY = 16;
-			reachX = 0;
-		}
-		else if dir == "left"
-		{
-			reachY = 0;
-			reachX = -16;
-		}
-		else if dir == "right"
-		{
-			reachY = 0;
-			reachX = 16;
+			//x and y distance for player's "reach" in front of them
+			if facing == DIR.UP
+			{
+				yReach = -8
+				xReach = 0;
+			}
+			else if facing == DIR.DOWN
+			{
+				yReach = 8
+				xReach = 0;
+			}
+			else if facing == DIR.LEFT
+			{
+				yReach = 0;
+				xReach = -8
+			}
+			else if facing == DIR.RIGHT
+			{
+				yReach = 0;
+				xReach = 8
+			}
 		}
 	}
 }

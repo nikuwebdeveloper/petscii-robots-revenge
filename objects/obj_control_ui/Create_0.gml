@@ -12,9 +12,9 @@ itemArrowFrameRight = 0;
 itemArrowFrameLeft = 0;
 
 //log
-arrayLog[0] = "WELCOME TO PETSCII ROBOTS REVENGE";
+arrayLog[0] = "WELCOME TO REVENGE OF THE PETSCII ROBOTS";
 arrayLog[1] = "ATTACK OF THE PETSCII ROBOTS BY DAVID MURRAY 2021";
-arrayLog[2] = "PETSCII ROBOTS REVENGE BY MOPSPEAR";
+arrayLog[2] = "REVENGE OF THE PETSCII ROBOTS BY MOPSPEAR 2024";
 newLine = "";
 switchWarning = true;
 
@@ -22,4 +22,4 @@ switchWarning = true;
 radar = true;
 targetDir = 0;
 
-draw_set_color(c_lime);
+draw_set_color(#3bf006);

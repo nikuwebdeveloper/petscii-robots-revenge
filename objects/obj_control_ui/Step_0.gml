@@ -1,10 +1,10 @@
 //toggle between items
-if obj_control_main.gameMode == "gameplay"
+if obj_main.gameMode == GAMEMODE.GAMEPLAY
 {
 	//items
 	if currentItemPos < 3
 	{
-		if obj_control_input.input_item_right
+		if obj_input.item_right
 		{
 			itemArrowFrameRight = 1;
 			currentItemPos++;
@@ -16,7 +16,7 @@ if obj_control_main.gameMode == "gameplay"
 	}
 	if currentItemPos > 0
 	{
-		if obj_control_input.input_item_left
+		if obj_input.item_left
 		{
 			itemArrowFrameLeft = 1;
 			currentItemPos--;
@@ -29,7 +29,7 @@ if obj_control_main.gameMode == "gameplay"
 	//weapons
 	if currentWeaponPos == 0
 	{
-		if obj_control_input.input_weapon_right
+		if obj_input.weapon_right
 		{
 			weaponArrowFrame = 1;
 			currentWeaponPos++;
@@ -41,7 +41,7 @@ if obj_control_main.gameMode == "gameplay"
 	}
 	if currentWeaponPos == 1
 	{
-		if obj_control_input.input_weapon_left
+		if obj_input.weapon_left
 		{
 			weaponArrowFrame = 1;
 			currentWeaponPos--;
@@ -79,7 +79,7 @@ if instance_exists(obj_player_vic)
 //radar
 if radar
 {
-	if obj_control_input.input_f9
+	if obj_input.f9
 	{
 		radar = false;
 	}
@@ -97,7 +97,7 @@ if radar
 }
 else
 {
-	if obj_control_input.input_f9
+	if obj_input.f9
 	{
 		radar = true;
 	}

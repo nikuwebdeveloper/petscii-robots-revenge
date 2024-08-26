@@ -1,3 +1,4 @@
+event_inherited()
 locked = false
 key = "none";
 image_speed = 0;

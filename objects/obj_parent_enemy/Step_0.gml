@@ -1,107 +1,107 @@
 event_inherited();
-if obj_control_main.gameMode == "gameplay"
+if obj_main.gameMode == GAMEMODE.GAMEPLAY
 {
-	if mode != "dead"
+	if mode != MODE.DEAD
 	{
 		//die
 		if hp <= 0
 		{
-			mode = "dead";
+			mode = MODE.DEAD;
 			pass = true; //pass through
 		}
 		if place_meeting(x,y,obj_effect_emp)
 		{
-			mode = "stun"
+			mode = MODE.STUN
 		}
-		if obj_control_main.tick //global ticking clock
+		if obj_main.tick //global ticking clock
 		{
-			if mode == "alert" //if alerted by player
+			if mode == MODE.ALERT //if alerted by player
 			{
-				if distance_to_object(alertTarget) >= 16
+				if distance_to_object(alertTarget) > 8
 				{
 					//find all enemies and add them to the grid if they're not you
-					var numInstances = instance_number(obj_parent_enemy);
-					for (var i = 0; i < numInstances; i++) 
+					for (var i = 0; i < instance_number(obj_parent_enemy); i++) 
 					{
-					   var instance = instance_find(obj_parent_enemy, i);
-						if instance.id != id
+						var instance = instance_find(obj_parent_enemy, i);
+						if instance != id
 						{
 							mp_grid_add_instances(grid, instance, false);
 						}
 					}
 					//add locked doors
-					var numInstanceDoor = instance_number(obj_parent_env_door);
-					for (var i = 0; i < numInstanceDoor; i++) 
-					{
-					   var instance = instance_find(obj_parent_env_door, i);
-						if instance.locked
-						{
-							mp_grid_add_instances(grid, instance, false);
-						}
-					}
+					// var numInstanceDoor = instance_number(obj_parent_env_door);
+					// for (var i = 0; i < numInstanceDoor; i++) 
+					// {
+					//   var instance = instance_find(obj_parent_env_door, i);
+					// 	if instance.locked
+					// 	{
+					// 		mp_grid_add_instances(grid, instance, false);
+					// 	}
+					// }
+					
 					//add all environmental objects
-					mp_grid_add_instances(grid, obj_parent_env, false); //environmental objects
-				
-					if mp_grid_path(grid, path, x, y, alertTarget.x,alertTarget.y, false) //if path is possible
+					mp_grid_add_instances(grid, obj_parent_env, false);
+					//if path is possible
+					if mp_grid_path(grid, path, x - 4, y - 4, alertTarget.x - 4, alertTarget.y - 4, false)
 					{
-						path_start(path, 16, path_action_stop, false);
+						path_start(path, 8, path_action_stop, false);
 					}
 				}
 				else
 				{
-					mode = "attack"; //attack if you're within range
+					mode = MODE.ATTACK; //attack if you're within range
 				}
 			}
-			else if mode == "attack"
+			else if mode == MODE.ATTACK
 			{
 				if !instance_exists(spark) //make sparks
 				{
 					spark = instance_create_depth(alertTarget.x, alertTarget.y, depth, obj_effect_spark_temp)
 				}
-				if distance_to_object(alertTarget) > 16 //follow target again if too far away
+				if distance_to_object(alertTarget) > 8 //follow target again if too far away
 				{
-					mode = "alert";
+					mode = MODE.ALERT;
 				}
 				if !alertTarget.gibSwitch //if dead but not gibbed yet
 				{
-					mode = "idle";
+					mode = MODE.IDLE;
 					alertTarget = noone;//reset
 				}
 			}
-			else if mode == "idle"
+			else if mode == MODE.IDLE
 			{
 				if alertTarget != noone //switch to alert
 				{
-					mode = "alert";
+					mode = MODE.ALERT;
 				}
-				if place_meeting(x+reachX, y+reachY, obj_parent_solid) //bounce off objects
+				if place_meeting(x + xReach, y + yReach, obj_parent_solid) //bounce off objects
 				{
 					//reverse directions
-					if dir == "up"
+					if facing == DIR.UP
 					{
-						dir = "down";
+						facing = DIR.DOWN;
 					}
-					else if dir == "down"
+					else if facing == DIR.DOWN
 					{
-						dir = "up";
+						facing = DIR.UP;
 					}
-					else if dir == "left"
+					else if facing == DIR.LEFT
 					{
-						dir = "right";
+						facing = DIR.RIGHT;
 					}
-					else if dir == "right"
+					else if facing == DIR.RIGHT
 					{
-						dir = "left";
+						facing = DIR.LEFT;
 					}
 				}
-				func_move_empty("up",reachX,reachY); //actually move
+				move_empty(DIR.UP, xReach, yReach); //actually move
 			}
-			else if mode == "confuse"
+			else if mode == MODE.CONFUSE
 			{
 				if confuseTimer == confuseTimerMax
 				{
 					confuseTimer = 0;
-					mode = "idle";
+					mode = MODE.IDLE;
 				}
 				else
 				{
@@ -112,31 +112,31 @@ if obj_control_main.gameMode == "gameplay"
 				var yy = 0;
 				if rand == 0
 				{
-					dir = "up";
-					yy = -16;
+					facing = DIR.UP;
+					yy = -8;
 				}
 				else if rand == 1
 				{
-					dir = "down";
-					yy = 16;
+					facing = DIR.DOWN;
+					yy = 8;
 				}
 				else if rand == 2
 				{
-					dir = "left";
-					xx = -16
+					facing = DIR.LEFT;
+					xx = -8
 				}
 				else if rand == 3
 				{
-					dir = "right";
-					xx = 16
+					facing = DIR.RIGHT;
+					xx = 8
 				}	
-				if !place_meeting(x+xx, y+yy,obj_parent_solid)
+				if !place_meeting(x + xx, y + yy,obj_parent_solid)
 				{
 					x += xx;
 					y += yy;
 				}
 			}
-			else if mode == "stun"
+			else if mode == MODE.STUN
 			{
 				canMove = true;
 				image_speed = 0;
@@ -145,7 +145,7 @@ if obj_control_main.gameMode == "gameplay"
 					canMove = false;
 					image_speed = 1;
 					stunTimer = 0;
-					mode = "idle"
+					mode = MODE.IDLE
 				}
 				else
 				{
@@ -154,19 +154,19 @@ if obj_control_main.gameMode == "gameplay"
 				alertTarget = noone;
 			}
 			//set sprites for directions
-			if dir == "up"
+			if facing == DIR.UP
 			{
 				sprite_index = spr_enemy_hoverbot_up;
 			}
-			if dir == "down"
+			if facing == DIR.DOWN
 			{
 				sprite_index = spr_enemy_hoverbot_down;
 			}
-			if dir == "left"
+			if facing == DIR.LEFT
 			{
 				sprite_index = spr_enemy_hoverbot_left;
 			}
-			if dir == "right"
+			if facing == DIR.RIGHT
 			{
 				sprite_index = spr_enemy_hoverbot_right;
 			}
@@ -177,14 +177,11 @@ if obj_control_main.gameMode == "gameplay"
 			mp_grid_clear_all(grid); //clear grid so that it can be updated (might be unnecessary)
 		}
 	}
-	else if mode == "dead"
+	else if mode == MODE.DEAD
 	{
-		if deathSwitch
-		{
-			canMove = true;
-			deathSwitch = false;
-			obj_control_main.enemyNumHoverbot--;
-			sprite_index = spr_enemy_hoverbot_dead
-		}
+		obj_main.switchEnemyDeadCount = true
+		var target = instance_create_depth(x,y,depth,obj_corpse)
+		target.sprite_index = spr_enemy_hoverbot_dead
+		instance_destroy()
 	}
 }

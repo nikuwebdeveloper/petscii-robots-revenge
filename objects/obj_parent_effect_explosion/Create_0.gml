@@ -1,5 +1,5 @@
 dmg = 0;
-mask_index = spr_mask_square_16x16
+mask_index = spr_hitbox_16x16
 if object_index == obj_effect_explosion_damage or object_index == obj_effect_plasma
 {
 	dmg = 25;

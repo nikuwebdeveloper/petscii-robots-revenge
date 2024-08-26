@@ -9,5 +9,5 @@ if label
 }
 if object_index != obj_env_wall
 {
-	func_draw_corner()
+	draw_corner()
 }

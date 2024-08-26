@@ -1,4 +1,4 @@
-function func_text(text)
+function text(text)
 {
 	for (var i = 0; i < string_length(text); i++)
 	{

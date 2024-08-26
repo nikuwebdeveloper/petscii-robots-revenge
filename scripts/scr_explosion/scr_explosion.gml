@@ -1,4 +1,4 @@
-function func_explosion(type)
+function explosion(type)
 {
 	if type == "bomb"
 	{
@@ -22,7 +22,7 @@ function func_explosion(type)
 			break;
 		}
 		if effect != obj_effect_plasma{
-		func_blast_move(16,-16, i)}
+		blast_move(16,-16, i)}
 	}
 	for (var i = 1; i < range; i++)
 	{
@@ -35,7 +35,7 @@ function func_explosion(type)
 			break;
 		}
 		if effect != obj_effect_plasma{
-		func_blast_move(16,16, i)}
+		blast_move(16,16, i)}
 	}
 	for (var i = 1; i < range; i++)
 	{
@@ -48,7 +48,7 @@ function func_explosion(type)
 			break;
 		}
 		if effect != obj_effect_plasma{
-		func_blast_move(-16,-16, i)}
+		blast_move(-16,-16, i)}
 	}
 	for (var i = 1; i < range; i++)
 	{
@@ -61,7 +61,7 @@ function func_explosion(type)
 			break;
 		}
 		if effect != obj_effect_plasma{
-		func_blast_move(-16,16, i)}
+		blast_move(-16,16, i)}
 	}
 	//cardinal directions
 	for (var i = 1; i < range+1; i++)
@@ -75,7 +75,7 @@ function func_explosion(type)
 			break;
 		}
 		if effect != obj_effect_plasma{
-		func_blast_move(0,-16, i)}
+		blast_move(0,-16, i)}
 	}
 	for (var i = 1; i < range+1; i++)
 	{
@@ -88,7 +88,7 @@ function func_explosion(type)
 			break;
 		}
 		if effect != obj_effect_plasma{
-		func_blast_move(0,16, i)}
+		blast_move(0,16, i)}
 	}
 	for (var i = 1; i < range+1; i++)
 	{
@@ -102,7 +102,7 @@ function func_explosion(type)
 			break;
 		}
 		if effect != obj_effect_plasma{
-		func_blast_move(-16,0, i)}
+		blast_move(-16,0, i)}
 	}
 	for (var i = 1; i < range+1; i++)
 	{
@@ -117,7 +117,7 @@ function func_explosion(type)
 			break;
 		}
 		if effect != obj_effect_plasma{
-		func_blast_move(16,0, i)}
+		blast_move(16,0, i)}
 	}
 	instance_destroy();
 }

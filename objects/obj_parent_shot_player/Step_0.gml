@@ -1,80 +1,64 @@
-if dir == "up"
-{
-	vspeed = -sp;
-	hspeed = 0;
-}
-else if dir == "down"
-{
-	vspeed = sp;
-	hspeed = 0;
-}
-else if dir == "left"
-{
-	vspeed = 0;
-	hspeed = -sp;
-}
-else if dir == "right"
-{
-	vspeed = 0;
-	hspeed = sp;
-}
 
+// set sprites
 if object_index == obj_shot_player_pistol
 {
-	if dir == "up"
+	if facing == DIR.UP
 	{
 		sprite_index = spr_shot_player_pistol_up;
-		reachX = 0;
-		reachY = -16
 	}
-	else if dir == "down"
+	else if facing == DIR.DOWN
 	{
 		sprite_index = spr_shot_player_pistol_down;
-		reachX = 0;
-		reachY = 16;
 	}
-	else if dir == "left"
+	else if facing == DIR.LEFT
 	{
 		sprite_index = spr_shot_player_pistol_left;
-		reachX = -16;
-		reachY = 0;
 	}
-	else if dir == "right"
+	else if facing == DIR.RIGHT
 	{
 		sprite_index = spr_shot_player_pistol_right;
-		reachX = 16;
-		reachY = 0;
 	}
 }
 else if object_index == obj_shot_player_plasma
 {
-	if dir == "up"
-	{
-		reachX = 0;
-		reachY = -16
-	}
-	else if dir == "down"
-	{
-		reachX = 0;
-		reachY = 16;
-	}
-	else if dir == "left"
-	{
-		reachX = -16;
-		reachY = 0;
-	}
-	else if dir == "right"
-	{
-		reachX = 16;
-		reachY = 0;
-	}
+	sprite_index = spr_shot_player_plasma;
+}
+
+// set speed
+if facing == DIR.UP
+{
+	vspeed = -sp;
+	hspeed = 0;
+	xReach = 0;
+	yReach = -16
+}
+else if facing == DIR.DOWN
+{
+	vspeed = sp;
+	hspeed = 0;
+	xReach = 0;
+	yReach = 16;
+}
+else if facing == DIR.LEFT
+{
+	vspeed = 0;
+	hspeed = -sp;
+	xReach = -16;
+	yReach = 0;
+}
+else if facing == DIR.RIGHT
+{
+	vspeed = 0;
+	hspeed = sp;
+	xReach = 16;
+	yReach = 0;
 }
 
 if object_index == obj_shot_player_pistol
 {
-	if place_meeting(x+reachX, y+reachY, obj_parent_solid)
+	if place_meeting(x+xReach, y+yReach, obj_parent_solid)
 	{
-		var target = instance_place(x+reachX,y+reachY,obj_parent_solid)
+		var target = instance_place(x+xReach,y+yReach,obj_parent_solid)
 		//var targetEnv = instance_place(x,y,obj_parent_env)
 		if instance_exists(target)
 		{
@@ -123,14 +107,14 @@ if object_index == obj_shot_player_pistol
 }
 else if object_index == obj_shot_player_plasma
 {
-	if place_meeting(x+reachX,y+reachY,obj_parent_env) 
+	if place_meeting(x+xReach,y+yReach,obj_parent_env) 
 	{
-		var target = instance_place(x+reachX,y+reachY,obj_parent_env)
+		var target = instance_place(x+xReach,y+yReach,obj_parent_env)
 		if instance_exists(target)
 		{
 			if !target.pass //if can't pass
 			{
-				func_explosion("plasma");
+				explosion("plasma");
 				instance_destroy();
 			}
 		}
@@ -144,7 +128,7 @@ else if object_index == obj_shot_player_plasma
 			{
 				if !target.pass //if can't pass
 				{
-					func_explosion("plasma");
+					explosion("plasma");
 					instance_destroy();
 				}
 			}

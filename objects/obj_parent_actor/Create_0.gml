@@ -1,3 +1,13 @@
-dead = false;
-dir = "up";
-mask_index = spr_mask_square_16x16;
+event_inherited()
+alive = true;
+facing = DIR.UP;
+
+mask_index = spr_hitbox_16x16;
+xReach = 0
+yReach = 0
+spriteCardboard = 
+{
+	downHalfStepCenter : false,
+	downFullStepCenter : false,
+	downFullStepRight : false
+}

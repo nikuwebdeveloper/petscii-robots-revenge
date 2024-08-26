@@ -1,37 +1,37 @@
-function func_reach(dir)
+function reach(facing)
 {
-	if dir == "up"
+	if facing == DIR.UP
 	{
-		reachX = 0;
-		reachY = -16
+		xReach = 0;
+		yReach = -8
 	}
-	else if dir == "down"
+	else if facing == DIR.DOWN
 	{
-		reachX = 0;
-		reachY = 16;
+		xReach = 0;
+		yReach = 8;
 	}
-	else if dir == "left"
+	else if facing == DIR.LEFT
 	{
-		reachX = -16;
-		reachY = 0;
+		xReach = -8;
+		yReach = 0;
 	}
-	else if dir == "right"
+	else if facing == DIR.RIGHT
 	{
-		reachX = 16;
-		reachY = 0;
+		xReach = 8;
+		yReach = 0;
 	}
 }
 
-function func_move_push(dir, mover, partner, reachX, reachY)
+function move_push(facing, mover, partner, xReach, yReach)
 {
-	if place_empty(x+reachX,y+reachY, obj_parent_solid) or place_meeting(x+reachX,y+reachY, partner)
+	if place_empty(x +  xReach, y + yReach, obj_parent_solid) or place_meeting(x + xReach, y + yReach, partner)
 	{
 		with(partner)
 		{
-			if place_empty(x+reachX,y+reachY, obj_parent_solid) or place_meeting(x+reachX,y+reachY, mover)
+			if place_empty(x + xReach,y + yReach, obj_parent_solid) or place_meeting(x + xReach,y + yReach, mover)
 			{
-				x = x + reachX;
-				y = y + reachY;
+				x += xReach;
+				y += yReach;
 				other.pushTargetBlocked = false;
 			}
 			else
@@ -50,31 +50,31 @@ function func_move_push(dir, mover, partner, reachX, reachY)
 			{
 				pushTargetBlocked = true;
 			}
-			x = x + reachX;
-			y = y + reachY;
+			x += xReach;
+			y += yReach;
 		}
 	}
 }
 
-function func_move_empty(dir, reachX, reachY)
+function move_empty(facing, xReach, yReach)
 {
-	if place_empty(x+reachX,y+reachY, obj_parent_solid)
+	if place_empty(x + xReach, y + yReach, obj_parent_solid)
 	{
-		x = x + reachX;
-		y = y + reachY;
+		x += xReach;
+		y += yReach;
 	}
 }
 
-function func_blast_move(xx,yy, i)
+function blast_move(xx,yy, i)
 {
-	var target = collision_line(x,y,x+(xx*i),y+(yy*i),obj_parent_env,false,true)
+	var target = collision_line(x, y, x + (xx * i), y + (yy * i), obj_parent_env, false, true)
 	if instance_exists(target)
 	{
 		with (target)
 		{
 			if canMove
 			{
-				if place_empty(x+xx,y+yy,obj_parent_solid)
+				if place_empty(x + xx,y + yy, obj_parent_solid)
 				{
 					x = x + xx;
 					y = y + yy;

@@ -17,7 +17,7 @@ if object_index == obj_env_barrel
 		{
 			boomSwitch = false;
 			image_index = 1;
-			func_explosion("bomb");
+			explosion("bomb");
 		}
 	}
 }
@@ -36,7 +36,7 @@ else if object_index == obj_env_switch
 }
 else if object_index == obj_env_teleporter_base
 {
-	if obj_control_main.levelClear == "clear"
+	if obj_main.levelClear == "clear"
 	{
 		on = true;
 	}
@@ -209,78 +209,4 @@ else if object_index == obj_env_wall
 			//tilemap_set_at_pixel(tileWallTop, 2, x, up);
 		}
 	}
-	////!
-	//if place_meeting(x,up,obj_env_wall) and !place_meeting(x,down,obj_env_wall) 
-	//and !place_meeting(left,y,obj_env_wall) and !place_meeting(right,y,obj_env_wall)
-	//{
-	//	if place_meeting(x,y+16,obj_parent_solid)
-	//	{
-	//		tilemap_set_at_pixel(tileWallTop, 0, left, y);
-	//		tilemap_set_at_pixel(tileWallBottom, 41, left, y);
-	//	}	
-	//	else
-	//	{
-	//		tilemap_set_at_pixel(tileWallBottom, 41, left, y);
-	//		tilemap_set_at_pixel(tileWallBottom, 0, left, y);
-	//	}
-	//}		
-	////--o
-	//else if !place_meeting(x,up,obj_env_wall) and !place_meeting(x,down,obj_env_wall) 
-	//and place_meeting(left,y,obj_env_wall) and !place_meeting(right,y,obj_env_wall)
-	//{
-	//	if place_meeting(x,y-16,obj_parent_solid)
-	//	{
-	//		tilemap_set_at_pixel(tileWallBottom, 5, x, up);
-	//		tilemap_set_at_pixel(tileWallBottom, 0, x, up);
-	//	}	
-	//	else
-	//	{
-	//		tilemap_set_at_pixel(tileWallTop, 0, x, up);
-	//		tilemap_set_at_pixel(tileWallBottom, 5, x, up);
-	//	}
-	//}	
-	////o--
-	//else if !place_meeting(x,up,obj_env_wall) and !place_meeting(x,down,obj_env_wall) 
-	//and !place_meeting(left,y,obj_env_wall) and place_meeting(right,y,obj_env_wall)
-	//{
-	//	if place_meeting(x,y+16,obj_parent_solid)
-	//	{
-	//		tilemap_set_at_pixel(tileWallTop, 41, left, y);
-	//		tilemap_set_at_pixel(tileWallTop, 0, left, y);
-	//	}	
-	//	else
-	//	{
-	//		tilemap_set_at_pixel(tileWallTop, 0, left,y);
-	//		tilemap_set_at_pixel(tileWallTop, 41, left, y);
-	//	}
-	//}	
-	//else if place_meeting(x,up,obj_env_wall) and !place_meeting(x,down,obj_env_wall) 
-	//and !place_meeting(left,y,obj_env_wall) and place_meeting(right,y,obj_env_wall)
-	//{
-	//	if place_meeting(x,y+16,obj_parent_solid)
-	//	{
-	//		tilemap_set_at_pixel(tileWallBottom, 41, left, y);
-	//		tilemap_set_at_pixel(tileWallTop, 0, left, y);
-	//	}	
-	//	else
-	//	{
-	//		tilemap_set_at_pixel(tileWallBottom, 0, left,y);
-	//		tilemap_set_at_pixel(tileWallTop, 41, left, y);
-	//	}
-	//}
-	////i
-	//else if !place_meeting(x,up,obj_env_wall) and place_meeting(x,down,obj_env_wall) 
-	//and !place_meeting(left,y,obj_env_wall) and !place_meeting(right,y,obj_env_wall)
-	//{
-	//	if place_meeting(x+16,y,obj_parent_solid)
-	//	{
-	//		tilemap_set_at_pixel(tileWallTop, 0, x, up);
-	//		tilemap_set_at_pixel(tileWallBottom, 5, x, up);
-	//	}	
-	//	else
-	//	{
-	//		//tilemap_set_at_pixel(tileWallTop, 0, x, y);
-	//		//tilemap_set_at_pixel(tileWallBottom, 5, x, y);
-	//	}
-	//}	
 }
