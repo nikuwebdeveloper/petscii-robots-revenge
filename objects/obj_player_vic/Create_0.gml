@@ -92,7 +92,7 @@ spriteDir =
 		/* 0 */[spr_player_vic_walk_right_pistol, spr_player_vic_walk_right_pistol, spr_player_vic_walk_right_pistol, spr_player_vic_walk_right_pistol],
 		/* 1 */[spr_player_vic_walk_up_shoot_right, spr_player_vic_walk_up_pistol, spr_player_vic_walk_up_shoot_left, spr_player_vic_walk_up_shoot_down],
 		/* 2 */[spr_player_vic_walk_left_pistol, spr_player_vic_walk_left_pistol, spr_player_vic_walk_left_pistol, spr_player_vic_walk_left_pistol],
-		/* 3 */[spr_player_vic_walk_down, spr_player_vic_walk_down_pistol, spr_player_vic_walk_down_pistol, spr_player_vic_walk_down_pistol]
+		/* 3 */[spr_player_vic_walk_down_shoot_right, spr_player_vic_walk_down_shoot_up, spr_player_vic_walk_down_pistol, spr_player_vic_walk_down_pistol]
 	],
 	plasma :
 	[

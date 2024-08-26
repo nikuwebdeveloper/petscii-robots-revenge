@@ -55,7 +55,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.4.1.152",
+    "IDEVersion":"2024.6.2.162",
   },
   "name":"petscii-robots-revenge",
   "resources":[
@@ -211,6 +211,7 @@
     {"id":{"name":"spr_player_vic_walk_down_pistol","path":"sprites/spr_player_vic_walk_down_pistol/spr_player_vic_walk_down_pistol.yy",},},
     {"id":{"name":"spr_player_vic_walk_down_shoot_left","path":"sprites/spr_player_vic_walk_down_shoot_left/spr_player_vic_walk_down_shoot_left.yy",},},
     {"id":{"name":"spr_player_vic_walk_down_shoot_right","path":"sprites/spr_player_vic_walk_down_shoot_right/spr_player_vic_walk_down_shoot_right.yy",},},
+    {"id":{"name":"spr_player_vic_walk_down_shoot_up","path":"sprites/spr_player_vic_walk_down_shoot_up/spr_player_vic_walk_down_shoot_up.yy",},},
     {"id":{"name":"spr_player_vic_walk_down_unarmed","path":"sprites/spr_player_vic_walk_down_unarmed/spr_player_vic_walk_down_unarmed.yy",},},
     {"id":{"name":"spr_player_vic_walk_left_pistol","path":"sprites/spr_player_vic_walk_left_pistol/spr_player_vic_walk_left_pistol.yy",},},
     {"id":{"name":"spr_player_vic_walk_left_unarmed","path":"sprites/spr_player_vic_walk_left_unarmed/spr_player_vic_walk_left_unarmed.yy",},},

@@ -150,6 +150,7 @@
     {"name":"spr_player_vic_walk_down_pistol","order":1,"path":"sprites/spr_player_vic_walk_down_pistol/spr_player_vic_walk_down_pistol.yy",},
     {"name":"spr_player_vic_walk_down_shoot_left","order":9,"path":"sprites/spr_player_vic_walk_down_shoot_left/spr_player_vic_walk_down_shoot_left.yy",},
     {"name":"spr_player_vic_walk_down_shoot_right","order":8,"path":"sprites/spr_player_vic_walk_down_shoot_right/spr_player_vic_walk_down_shoot_right.yy",},
+    {"name":"spr_player_vic_walk_down_shoot_up","order":10,"path":"sprites/spr_player_vic_walk_down_shoot_up/spr_player_vic_walk_down_shoot_up.yy",},
     {"name":"spr_player_vic_walk_down_unarmed","order":1,"path":"sprites/spr_player_vic_walk_down_unarmed/spr_player_vic_walk_down_unarmed.yy",},
     {"name":"spr_player_vic_walk_left_pistol","order":2,"path":"sprites/spr_player_vic_walk_left_pistol/spr_player_vic_walk_left_pistol.yy",},
     {"name":"spr_player_vic_walk_left_unarmed","order":2,"path":"sprites/spr_player_vic_walk_left_unarmed/spr_player_vic_walk_left_unarmed.yy",},
