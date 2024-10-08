@@ -41,7 +41,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 
 	var weaponSprite = spr_ui_item_none;
 	//draw weapon arrows
-	if obj_inventory.weaponPistol or obj_inventory.weaponPlasma
+	if obj_inventory.hasWeaponPistol or obj_inventory.hasWeaponPlasma
 	{
 		if currentWeaponPos == 1
 		{
@@ -55,7 +55,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 	switch (currentWeaponPos)
 	{
 		case 0:
-			if obj_inventory.weaponPistol
+			if obj_inventory.hasWeaponPistol
 			{
 				weaponSprite = spr_ui_item_pistol;
 				obj_inventory.currentWeapon = WEAPON.PISTOL;
@@ -67,7 +67,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			}
 			break;		
 		case 1:
-			if obj_inventory.weaponPlasma
+			if obj_inventory.hasWeaponPlasma
 			{
 				weaponSprite = spr_ui_item_plasma;
 				obj_inventory.currentWeapon = WEAPON.PLASMA;
@@ -94,11 +94,11 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		switch (currentItemPos)
 		{
 			case 0:
-				if obj_inventory.itemHealthPack
+				if obj_inventory.hasItemMedkit
 				{
 					itemSprite = spr_ui_item_healthPack;
 					itemNum = obj_inventory.itemHealthPackStock;
-					obj_inventory.currentItem = "itemHealthPack";
+					obj_inventory.currentItem = "hasItemMedkit";
 				}
 				else
 				{
@@ -155,7 +155,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		{
 			text_outline(x + itemXPos+2, y + 89, itemNum, #3bf006, #3bf006)
 		}
-		if obj_inventory.currentItem != "itemHealthPack" 	
+		if obj_inventory.currentItem != "hasItemMedkit" 	
 		{
 			text_outline(x + itemXPos+15, y + 89, "/10", #3bf006, #3bf006) //out of 10 if not medkit
 		}

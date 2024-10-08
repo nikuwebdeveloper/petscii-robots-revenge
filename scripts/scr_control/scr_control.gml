@@ -28,6 +28,7 @@ function player_shoot(_direction, _weapon)
 	{
 		if instance_exists(obj_player_vic)
 		{
+			obj_player_vic.shootTurnTimer = shootTurnTimerMax
 			// spawn projectile
 			_target = instance_create_depth(obj_player_vic.x, obj_player_vic.y, obj_player_vic.depth, obj_shot_player_pistol)
 			// set facing of projectile

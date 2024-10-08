@@ -1,6 +1,6 @@
 if totalItemNum <= 4 
 {
-	if itemHealthPack and itemHealthPackSwitch
+	if hasItemMedkit and itemHealthPackSwitch
 	{
 		itemHealthPackSwitch = false;
 		totalItemNum++;

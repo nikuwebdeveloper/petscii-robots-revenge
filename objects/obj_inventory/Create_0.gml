@@ -1,13 +1,14 @@
-//Vic's current weapon
+// player's current weapon selected
 currentWeapon = WEAPON.PISTOL
-currentItem = "pistol";
+// player's current item selected
+currentItem = ITEM.NONE
 
 //weapon inventory
-weaponPistol = true;
-weaponPlasma = false;
+hasWeaponPistol = true;
+hasWeaponPlasma = false;
 
 //item inventory
-itemHealthPack = false;
+hasItemMedkit = false;
 itemEmp = false;
 itemMagnet = false;
 itemBomb = false;

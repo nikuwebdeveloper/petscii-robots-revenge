@@ -1,5 +1,6 @@
 canMove = false;
-item = "none";
+item = ITEM.NONE
+weapon = WEAPON.NONE
 canSearch = false;
 searched = false;
 label = false; //item name for draw
@@ -55,6 +56,7 @@ else if object_index == obj_env_box_brown_normal
 	canMove = true;
 	canSearch = true;
 	mask_index = spr_hitbox_16x16;
+	item = ITEM.NONE;
 }
 else if object_index == obj_env_barrel
 {

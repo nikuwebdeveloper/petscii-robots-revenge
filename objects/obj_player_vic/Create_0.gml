@@ -1,7 +1,10 @@
 event_inherited()
 hsp = 0
 vsp = 0
-
+ 
+drawWallHori = false
+drawWallVert = false
+ 
 //health
 hp = 100
 pass = false
@@ -21,7 +24,7 @@ dead = false
 deathTimer = 0
 deathTimerMax = 60*5
 shootTurnTimer = 0
-shootTurnTimerMax = 10
+shootTurnTimerMax = 20
 
 //gib
 gibSwitch = true
@@ -75,7 +78,7 @@ if obj_inventory.currentWeapon == WEAPON.UNARMED
 }
 else if obj_inventory.currentWeapon == WEAPON.PISTOL or obj_inventory.currentWeapon == WEAPON.PLASMA
 {
-	sprite_index = spr_player_vic_idle_pistol
+	sprite_index = s_vic_idle
 }
 
 spriteDir = 
@@ -89,16 +92,17 @@ spriteDir =
 	],
 	pistol :
 	[
-		/* 0 */[spr_player_vic_walk_right_pistol, spr_player_vic_walk_right_pistol, spr_player_vic_walk_right_pistol, spr_player_vic_walk_right_pistol],
-		/* 1 */[spr_player_vic_walk_up_shoot_right, spr_player_vic_walk_up_pistol, spr_player_vic_walk_up_shoot_left, spr_player_vic_walk_up_shoot_down],
-		/* 2 */[spr_player_vic_walk_left_pistol, spr_player_vic_walk_left_pistol, spr_player_vic_walk_left_pistol, spr_player_vic_walk_left_pistol],
-		/* 3 */[spr_player_vic_walk_down_shoot_right, spr_player_vic_walk_down_shoot_up, spr_player_vic_walk_down_pistol, spr_player_vic_walk_down_pistol]
+		/* right, up, left, down*/
+		/* 0 */[s_vic_right_sRight, s_vic_right_sUp, s_vic_right_sLeft, s_vic_right_sDown], /* done */
+		/* 1 */[s_vic_up_sRight, s_vic_up_sUp, s_vic_up_sLeft, s_vic_up_sDown], /* done */
+		/* 2 */[s_vic_left_sRight, s_vic_left_sUp, s_vic_left_sLeft, s_vic_left_sDown],
+		/* 3 */[s_vic_down_sRight, s_vic_down_sUp, s_vic_down_sLeft, s_vic_down_sDown] /* done */
 	],
 	plasma :
 	[
-		spr_player_vic_walk_right_pistol,
-		spr_player_vic_walk_up_pistol,
-		spr_player_vic_walk_left_pistol,
-		spr_player_vic_walk_down_pistol
+		s_vic_right_sRight,
+		s_vic_up_sUp,
+		s_vic_left_sLeft,
+		s_vic_down_sDown
 	]
 }

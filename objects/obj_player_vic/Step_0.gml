@@ -3,14 +3,6 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 {
 	if alive
 	{
-		image_blend = c_white
-		with (obj_env_wall)
-		{
-			if point_in_rectangle(other.x + 4, other.y + 8, x, y, x + 16, y + 16)
-			{
-				other.spriteCardboard.downFullStepCenter = true
-			}
-		}
 		#region HAZARD
 		#endregion
 
@@ -49,8 +41,9 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		//use item
 		if obj_input.use
 		{
-			if obj_inventory.currentItem == "itemHealthPack"
+			if obj_inventory.currentItem == ITEM.MEDKIT
 			{
+				// complilcated routine to not overuse medkit
 				if hp < 100
 				{
 					if hp + obj_inventory.itemHealthPackStock <= 100
@@ -67,98 +60,112 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 					}
 				}
 			}
-			else if obj_inventory.currentItem == "itemBomb"
+			else if obj_inventory.currentItem == ITEM.BOMB
 			{
-				if obj_input.use
+				if obj_inventory.itemBombStock > 0
 				{
-					if obj_inventory.itemBombStock > 0
-					{
-						instance_create_depth(x + xReach, y + yReach, depth, obj_deployable_bomb)
-						obj_inventory.itemBombStock--
-					}
-				}	
+					instance_create_depth(x + xReach, y + yReach, depth, obj_deployable_bomb)
+					obj_inventory.itemBombStock--
+				}
 			}
-			else if obj_inventory.currentItem == "itemMagnet"
+			else if obj_inventory.currentItem == ITEM.MAGNET
 			{
-				if obj_input.use
+				if obj_inventory.itemMagnetStock > 0
 				{
-					if obj_inventory.itemMagnetStock > 0
-					{
-						instance_create_depth(x + xReach, y + yReach, depth, obj_deployable_magnet)
-						obj_inventory.itemMagnetStock--
-					}
-				}		
+					instance_create_depth(x + xReach, y + yReach, depth, obj_deployable_magnet)
+					obj_inventory.itemMagnetStock--
+				}
 			}
-			else if obj_inventory.currentItem == "itemEmp"
+			else if obj_inventory.currentItem == ITEM.EMP
 			{
-				if obj_input.use
+				if obj_inventory.itemEmpStock > 0
 				{
-					if obj_inventory.itemEmpStock > 0
-					{
-						instance_create_depth(x + xReach, y + yReach, depth, obj_deployable_emp)
-						obj_inventory.itemEmpStock--
-					}
-				}		
+					instance_create_depth(x + xReach, y + yReach, depth, obj_deployable_emp)
+					obj_inventory.itemEmpStock--
+				}
+			}
+			else if obj_inventory.currentItem == ITEM.NONE
+			{
+				obj_control_ui.newLine = "YOU HAVE NO ITEM SELECTED."
 			}
 		}
 		
 		// search for item
 		if obj_input.search
 		{
-			searchTarget = instance_place(x + xReach, y + yReach, obj_parent_env)
+			//identify target to search
+			var searchTarget = instance_place(x + xReach, y + yReach, obj_parent_env)
+			// if the search target exists
 			if instance_exists(searchTarget)
 			{
-				if searchTarget.item != "none"
+				// if it hasn't been already searched
+				if !searchTarget.searched
 				{
-					switch (searchTarget.item)
-					{
-						case WEAPON.PISTOL:
-							obj_inventory.weaponPistol = true
-							obj_inventory.weaponPistolAmmo += obj_inventory.weaponPistolAdd
-							obj_control_ui.newLine = "YOU PICKED UP A PISTOL."
-							break
-						case WEAPON.PLASMA:
-							obj_inventory.weaponPlasma = true
-							obj_inventory.weaponPlasmaAmmo += obj_inventory.weaponPlasmaAdd
-							obj_control_ui.newLine = "YOU PICKED UP A PLASMA GUN."
-						
-							break
-						case "itemHealthPack":
-							obj_inventory.itemHealthPack = true
-							obj_inventory.itemHealthPackStock += obj_inventory.itemHealthPackAdd
-							obj_control_ui.newLine = "YOU PICKED UP A MEDKIT."
-							break		
-						case "itemEmp":
-							obj_inventory.itemEmp = true
-							obj_inventory.itemEmpStock += obj_inventory.itemEmpAdd
-							obj_control_ui.newLine = "YOU PICKED UP SOME EMPS."
-							break		
-						case "itemMagnet":
-							obj_inventory.itemMagnet = true
-							obj_inventory.itemMagnetStock += obj_inventory.itemMagnetAdd
-							obj_control_ui.newLine = "YOU PICKED UP SOME MAGNETS."
-							break		
-						case "itemBomb":
-							obj_inventory.itemBomb = true
-							obj_inventory.itemBombStock += obj_inventory.itemBombAdd
-							obj_control_ui.newLine = "YOU PICKED UP SOME BOMBS."
-							break								
-					}
-					if searchTarget.item == WEAPON.PISTOL or searchTarget.item == WEAPON.PLASMA
-					{
-						obj_inventory.currentWeapon = searchTarget.item
-					}
-					if searchTarget.item != WEAPON.PISTOL and searchTarget.item != WEAPON.PLASMA
-					{
-						obj_inventory.currentItem = searchTarget.item
-					}
+					// set searched to true
 					searchTarget.searched = true
-					searchTarget.item = "none"
+					// if empty
+					if searchTarget.item == ITEM.NONE and searchTarget.weapon == WEAPON.NONE
+					{
+						obj_control_ui.newLine = "NOTHING THERE."
+					}
+					// has something
+					else
+					{
+						// if it has an item
+						if searchTarget.item != ITEM.NONE
+						{
+							switch searchTarget.item
+							{
+								case ITEM.MEDKIT:
+									obj_inventory.hasItemMedkit = true
+									obj_inventory.itemHealthPackStock += obj_inventory.itemHealthPackAdd
+									obj_control_ui.newLine = "YOU PICKED UP A MEDKIT."
+									break		
+								case ITEM.EMP:
+									obj_inventory.itemEmp = true
+									obj_inventory.itemEmpStock += obj_inventory.itemEmpAdd
+									obj_control_ui.newLine = "YOU PICKED UP SOME EMPS."
+									break		
+								case ITEM.MAGNET:
+									obj_inventory.itemMagnet = true
+									obj_inventory.itemMagnetStock += obj_inventory.itemMagnetAdd
+									obj_control_ui.newLine = "YOU PICKED UP SOME MAGNETS."
+									break		
+								case ITEM.BOMB:
+									obj_inventory.itemBomb = true
+									obj_inventory.itemBombStock += obj_inventory.itemBombAdd
+									obj_control_ui.newLine = "YOU PICKED UP SOME BOMBS."
+									break								
+							}
+							// reset
+							
+						}
+						if searchTarget.weapon != WEAPON.NONE
+						{
+							switch searchTarget.weapon
+							{
+								case WEAPON.PISTOL:
+									obj_inventory.hasWeaponPistol = true
+									obj_inventory.weaponPistolAmmo += obj_inventory.weaponPistolAdd
+									obj_control_ui.newLine = "YOU PICKED UP A PISTOL."
+									break
+								case WEAPON.PLASMA:
+									obj_inventory.hasWeaponPlasma = true
+									obj_inventory.weaponPlasmaAmmo += obj_inventory.weaponPlasmaAdd
+									obj_control_ui.newLine = "YOU PICKED UP A PLASMA GUN."
+									break
+							}
+							searchTarget.weapon = WEAPON.NONE
+						}
+					}
 				}
+				// if it HAS been searched
 				else
 				{
-					obj_control_ui.newLine = "NOTHING THERE."
-					searchTarget.searched = true
+					if searchTarget.object_index != obj_env_switch
+					{
+						obj_control_ui.newLine = "ALREADY SEARCHED."
+					}
 				}
 				if searchTarget.object_index == obj_env_switch
 				{
@@ -174,6 +181,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				}
 			}
 		}
+		
 		// find push target
 		else if obj_input.toggle_push
 		{
@@ -195,6 +203,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				}
 			}
 		}
+		
 		// set direction regardless if you can progress or not
 		if obj_input.move_right_press
 		{
@@ -248,21 +257,24 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		// change walking sprite based on direction
 		if obj_inventory.currentWeapon != WEAPON.UNARMED
 		{
-			if facing == DIR.RIGHT
+			if shootTurnTimer == 0
 			{
-				// sprite_index = spr_player_vic_walk_right_pistol
-			}
-			else if facing == DIR.UP
-			{
-				// sprite_index = spr_player_vic_walk_up_pistol
-			}
-			else if facing == DIR.LEFT
-			{
-				// sprite_index = spr_player_vic_walk_left_pistol
-			}
-			else if facing == DIR.DOWN
-			{
-				// sprite_index = spr_player_vic_walk_down_pistol
+				if facing == DIR.RIGHT
+				{
+					sprite_index = s_vic_right_sRight
+				}
+				else if facing == DIR.UP
+				{
+					sprite_index = s_vic_up_sUp
+				}
+				else if facing == DIR.LEFT
+				{
+					sprite_index = s_vic_left_sLeft
+				}
+				else if facing == DIR.DOWN
+				{
+					sprite_index = s_vic_down_sDown
+				}
 			}
 		}	
 		// a tick happens every 10ms 
@@ -298,6 +310,12 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			}
 		}
 		#region SHOOTING
+		// tick down shoot turn timer
+		if shootTurnTimer > 0
+		{
+			shootTurnTimer--
+		}
+		
 		// shooting
 		if obj_inventory.currentWeapon != WEAPON.UNARMED
 		{

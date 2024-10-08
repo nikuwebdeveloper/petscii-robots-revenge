@@ -1,1 +1,1 @@
-#macro PLAYER_NAME "Vic"
+//macro PLAYER_NAME "Vic"

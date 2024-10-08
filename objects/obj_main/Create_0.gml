@@ -15,9 +15,19 @@ enum DIR
 }
 enum WEAPON
 {
+	NONE,
 	UNARMED,
 	PISTOL,
 	PLASMA
+}
+
+enum ITEM
+{
+	NONE,
+	MEDKIT,
+	EMP,
+	MAGNET,
+	BOMB,
 }
 
 enum MODE
