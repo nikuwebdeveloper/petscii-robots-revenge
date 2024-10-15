@@ -1,4 +1,5 @@
 draw_set_font(font_mincho_8);
+#macro GREEN #43e232
 
 //gameplay mode
 enum GAMEMODE

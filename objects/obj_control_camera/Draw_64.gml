@@ -9,4 +9,4 @@ draw_set_color(c_white)
 //{
 //    draw_line(0, yStart + (16*i), 480, yStart + (16*i))
 //}
-draw_set_color(#3bf006)
+draw_set_color(GREEN)

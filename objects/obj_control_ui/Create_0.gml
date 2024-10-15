@@ -22,4 +22,4 @@ switchWarning = true;
 radar = true;
 targetDir = 0;
 
-draw_set_color(#3bf006);
+draw_set_color(GREEN);

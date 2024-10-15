@@ -8,13 +8,13 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		{
 			if obj_inventory.weaponPistolAmmo <= 9
 			{
-				text_outline(x + itemXPos + 3, y + 35, "0"+string(obj_inventory.weaponPistolAmmo), #3bf006, #3bf006)
+				text_outline(x + itemXPos + 3, y + 35, "0"+string(obj_inventory.weaponPistolAmmo), GREEN, GREEN)
 			}
 			else
 			{
-				text_outline(x + itemXPos + 3, y + 35, obj_inventory.weaponPistolAmmo, #3bf006, #3bf006)
+				text_outline(x + itemXPos + 3, y + 35, obj_inventory.weaponPistolAmmo, GREEN, GREEN)
 			}
-			text_outline(x + itemXPos + 15, y + 35, "/99", #3bf006, #3bf006) // /9
+			text_outline(x + itemXPos + 15, y + 35, "/99", GREEN, GREEN) // /9
 		}
 	}
 	else if obj_inventory.currentWeapon == WEAPON.PLASMA
@@ -24,13 +24,13 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			//draw ammo
 			if obj_inventory.weaponPlasmaAmmo <= 9
 			{
-				text_outline(x + itemXPos + 3, y + 35, "0"+string(obj_inventory.weaponPlasmaAmmo), #3bf006, #3bf006)
+				text_outline(x + itemXPos + 3, y + 35, "0"+string(obj_inventory.weaponPlasmaAmmo), GREEN, GREEN)
 			}
 			else
 			{
-				text_outline(x + itemXPos + 3, y + 35, obj_inventory.weaponPlasmaAmmo, #3bf006, #3bf006)
+				text_outline(x + itemXPos + 3, y + 35, obj_inventory.weaponPlasmaAmmo, GREEN, GREEN)
 			}
-			text_outline(x + itemXPos + 15, y + 35, "/99", #3bf006, #3bf006) // /9
+			text_outline(x + itemXPos + 15, y + 35, "/99", GREEN, GREEN) // /9
 		}
 	}
 
@@ -149,19 +149,19 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		//draw 0 before numbers below 10
 		if itemNum <= 9
 		{
-			text_outline(x + itemXPos+2, y + 89, "0"+string(itemNum), #3bf006, #3bf006)
+			text_outline(x + itemXPos+2, y + 89, "0"+string(itemNum), GREEN, GREEN)
 		}
 		else
 		{
-			text_outline(x + itemXPos+2, y + 89, itemNum, #3bf006, #3bf006)
+			text_outline(x + itemXPos+2, y + 89, itemNum, GREEN, GREEN)
 		}
 		if obj_inventory.currentItem != "hasItemMedkit" 	
 		{
-			text_outline(x + itemXPos+15, y + 89, "/10", #3bf006, #3bf006) //out of 10 if not medkit
+			text_outline(x + itemXPos+15, y + 89, "/10", GREEN, GREEN) //out of 10 if not medkit
 		}
 		else 
 		{
-			text_outline(x + itemXPos+15, y + 89, "/99", #3bf006, #3bf006) //out of 100 if a medkit
+			text_outline(x + itemXPos+15, y + 89, "/99", GREEN, GREEN) //out of 100 if a medkit
 		}
 	}
 	draw_sprite(itemSprite, 0, x + itemXPos, y + 74);
@@ -193,16 +193,16 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 	}
 
 	//draw log text
-	text_outline(x + 14, y + 236, arrayLog[0], #3bf006, #3bf006);
-	text_outline(x + 14, y + 246, arrayLog[1], #3bf006, #3bf006);
-	text_outline(x + 14, y + 256, arrayLog[2], #3bf006, #3bf006);
+	text_outline(x + 14, y + 236, arrayLog[0], GREEN, GREEN);
+	text_outline(x + 14, y + 246, arrayLog[1], GREEN, GREEN);
+	text_outline(x + 14, y + 256, arrayLog[2], GREEN, GREEN);
 
 	//draw text on right side
-	text_outline(x + 363, y + 250, obj_main.enemyCount.hoverbot,#3bf006,#3bf006)
-	text_outline(x + 371, y + 250, obj_main.enemyCount.rollerbot,#3bf006,#3bf006)
-	text_outline(x + 379, y + 250, obj_main.enemyCount.evilbot,#3bf006,#3bf006)
-	text_outline(x + 387, y + 250, obj_main.enemyCount.moverbot,#3bf006,#3bf006)
-	text_outline(x + 395, y + 250, obj_main.enemyCount.laserbot,#3bf006,#3bf006)
+	text_outline(x + 363, y + 250, obj_main.enemyCount.hoverbot,GREEN,GREEN)
+	text_outline(x + 371, y + 250, obj_main.enemyCount.rollerbot,GREEN,GREEN)
+	text_outline(x + 379, y + 250, obj_main.enemyCount.evilbot,GREEN,GREEN)
+	text_outline(x + 387, y + 250, obj_main.enemyCount.moverbot,GREEN,GREEN)
+	text_outline(x + 395, y + 250, obj_main.enemyCount.laserbot,GREEN,GREEN)
 
 	//draw radar
 	if radar
@@ -256,16 +256,16 @@ else if obj_main.gameMode == GAMEMODE.STATUS
 	draw_set_font(font_vcr_20)
 	if obj_main.levelClear == "clear"
 	{
-			text_outline(258-128, 60-16,"MISSION SUCCESSFUL" , #3bf006,#3bf006);
+			text_outline(258-128, 60-16,"MISSION SUCCESSFUL" , GREEN,GREEN);
 	}
 	else if obj_main.levelClear == "fail"
 	{
-			text_outline(258-128+24, 60-16,"MISSION FAILED", #3bf006,#3bf006);
+			text_outline(258-128+24, 60-16,"MISSION FAILED", GREEN,GREEN);
 	}
-	text_outline(258, 76+32*0, obj_main.levelName, #3bf006,#3bf006);
-	text_outline(258, 76+32*1, obj_main.gameTime, #3bf006,#3bf006);
-	text_outline(258, 76+32*2, obj_main.enemyCount.total, #3bf006,#3bf006);
-	text_outline(258, 76+32*3, obj_main.secrectNum, #3bf006,#3bf006);
-	text_outline(258, 76+32*4, obj_main.difficulty, #3bf006,#3bf006);
-	text_outline(258-128-8, 76+32*5, "PRESS F1 TO RESTART", #3bf006,#3bf006);
+	text_outline(258, 76+32*0, obj_main.levelName, GREEN,GREEN);
+	text_outline(258, 76+32*1, obj_main.gameTime, GREEN,GREEN);
+	text_outline(258, 76+32*2, obj_main.enemyCount.total, GREEN,GREEN);
+	text_outline(258, 76+32*3, obj_main.secrectNum, GREEN,GREEN);
+	text_outline(258, 76+32*4, obj_main.difficulty, GREEN,GREEN);
+	text_outline(258-128-8, 76+32*5, "PRESS F1 TO RESTART", GREEN,GREEN);
 }

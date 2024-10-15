@@ -3,7 +3,7 @@
   "%Name":"spr_tile_wall",
   "bboxMode":0,
   "bbox_bottom":127,
-  "bbox_left":0,
+  "bbox_left":16,
   "bbox_right":159,
   "bbox_top":0,
   "collisionKind":1,
@@ -20,7 +20,6 @@
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"ec2f98c2-ea02-4027-9e0c-706987de8063","blendMode":0,"displayName":"Layer 2","isLocked":false,"name":"ec2f98c2-ea02-4027-9e0c-706987de8063","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
-    {"$GMImageLayer":"","%Name":"9beec65b-f598-4241-8b16-eb15f472b5cd","blendMode":0,"displayName":"Layer 1","isLocked":true,"name":"9beec65b-f598-4241-8b16-eb15f472b5cd","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_tile_wall",
   "nineSlice":null,
