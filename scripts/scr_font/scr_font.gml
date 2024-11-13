@@ -2,7 +2,7 @@ function text(text)
 {
 	for (var i = 0; i < string_length(text); i++)
 	{
-		arrayString[i] = string_char_at(text,i+1);
+		arrayString[i] = string_char_at(text,i + 1);
 	}
 	for (var i = 0; i < array_length(arrayString); i++)
 	{
@@ -93,6 +93,6 @@ function text(text)
 	}
 	for (var i = 0; i < array_length(arrayFont); i++)
 	{
-		draw_sprite_ext(arrayFont[i], 0,x+7*i,y,1,1,0,c_white,1);
+		draw_sprite_ext(arrayFont[i], 0, x + 7 * i, y ,1 ,1 , 0 , c_white, 1);
 	}
 }

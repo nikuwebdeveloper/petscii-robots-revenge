@@ -8,8 +8,8 @@
   "name":"obj_parent_mapItem",
   "overriddenProperties":[],
   "parent":{
-    "name":"petscii-robots-revenge",
-    "path":"petscii-robots-revenge.yyp",
+    "name":"parent",
+    "path":"folders/Objects/parent.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -15,7 +15,7 @@
 //	draw_self();
 //}
 
-if !place_meeting(x,y,obj_player_vic)
+//if !place_meeting(x,y,obj_player_vic)
 {
 	draw_self();
 }

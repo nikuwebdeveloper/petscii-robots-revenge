@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":8,
   "parent":{
-    "name":"petscii-robots-revenge",
-    "path":"petscii-robots-revenge.yyp",
+    "name":"map item",
+    "path":"folders/Sprites/map item.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

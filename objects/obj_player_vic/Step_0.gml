@@ -3,6 +3,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 {
 	if alive
 	{
+		reach(facing)
 		#region HAZARD
 		#endregion
 
@@ -39,59 +40,59 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			dead = true
 		}
 		//use item
-		if obj_input.use
+		if global.input.use
 		{
-			if obj_inventory.currentItem == ITEM.MEDKIT
+			if global.currentItem == ITEM.MEDKIT
 			{
-				// complilcated routine to not overuse medkit
-				if hp < 100
+				// if injured
+				if (hp < 100) and (global.inventory.medkit.stock > 0)
 				{
-					if hp + obj_inventory.itemHealthPackStock <= 100
+					if (hp + global.inventory.medkit.stock) >= 100
 					{
-						hp = hp + obj_inventory.itemHealthPackStock
-						obj_inventory.itemHealthPackStock = 0
-					}
-					else if hp + obj_inventory.itemHealthPackStock > 100
-					{
-						var total = hp + obj_inventory.itemHealthPackStock
-						var overflow = total - 100
-						obj_inventory.itemHealthPackStock = overflow
+						// overflow
+						global.inventory.medkit.stock = hp + global.inventory.medkit.stock - 100
 						hp = 100
 					}
+					//use up what you have to heal
+					else
+					{
+						hp += global.inventory.medkit.stock
+						global.inventory.medkit.stock = 0
+					}
 				}
 			}
-			else if obj_inventory.currentItem == ITEM.BOMB
+			else if global.currentItem == ITEM.BOMB
 			{
-				if obj_inventory.itemBombStock > 0
+				if global.inventory.bomb.stock> 0
 				{
 					instance_create_depth(x + xReach, y + yReach, depth, obj_deployable_bomb)
-					obj_inventory.itemBombStock--
+					global.inventory.bomb.stock--
 				}
 			}
-			else if obj_inventory.currentItem == ITEM.MAGNET
+			else if global.currentItem == ITEM.MAGNET
 			{
-				if obj_inventory.itemMagnetStock > 0
+				if global.inventory.magnet.stock > 0
 				{
 					instance_create_depth(x + xReach, y + yReach, depth, obj_deployable_magnet)
-					obj_inventory.itemMagnetStock--
+					global.inventory.magnet.stock--
 				}
 			}
-			else if obj_inventory.currentItem == ITEM.EMP
+			else if global.currentItem == ITEM.EMP
 			{
-				if obj_inventory.itemEmpStock > 0
+				if global.inventory.emp.stock > 0
 				{
 					instance_create_depth(x + xReach, y + yReach, depth, obj_deployable_emp)
-					obj_inventory.itemEmpStock--
+					global.inventory.emp.stock--
 				}
 			}
-			else if obj_inventory.currentItem == ITEM.NONE
+			else if global.currentItem == ITEM.NONE
 			{
-				obj_control_ui.newLine = "YOU HAVE NO ITEM SELECTED."
+				obj_ui.newLine = "YOU HAVE NO ITEM SELECTED."
 			}
 		}
 		
 		// search for item
-		if obj_input.search
+		if global.input.search
 		{
 			//identify target to search
 			var searchTarget = instance_place(x + xReach, y + yReach, obj_parent_env)
@@ -106,7 +107,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 					// if empty
 					if searchTarget.item == ITEM.NONE and searchTarget.weapon == WEAPON.NONE
 					{
-						obj_control_ui.newLine = "NOTHING THERE."
+						obj_ui.newLine = "NOTHING THERE."
 					}
 					// has something
 					else
@@ -116,43 +117,42 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 						{
 							switch searchTarget.item
 							{
+								//FIX! need to prevent overflow
 								case ITEM.MEDKIT:
-									obj_inventory.hasItemMedkit = true
-									obj_inventory.itemHealthPackStock += obj_inventory.itemHealthPackAdd
-									obj_control_ui.newLine = "YOU PICKED UP A MEDKIT."
+									global.inventory.medkit.acquired = true
+									global.inventory.medkit.stock += global.inventory.medkit.add;
+									obj_ui.newLine = "YOU PICKED UP A MEDKIT."
 									break		
 								case ITEM.EMP:
-									obj_inventory.itemEmp = true
-									obj_inventory.itemEmpStock += obj_inventory.itemEmpAdd
-									obj_control_ui.newLine = "YOU PICKED UP SOME EMPS."
+									global.inventory.emp.acquired = true
+									global.inventory.emp.stock += global.inventory.emp.add;
+									obj_ui.newLine = "YOU PICKED UP SOME EMPS."
 									break		
 								case ITEM.MAGNET:
-									obj_inventory.itemMagnet = true
-									obj_inventory.itemMagnetStock += obj_inventory.itemMagnetAdd
-									obj_control_ui.newLine = "YOU PICKED UP SOME MAGNETS."
+									global.inventory.magnet.acquired = true
+									global.inventory.magnet.stock += global.inventory.magnet.add;
+									obj_ui.newLine = "YOU PICKED UP SOME MAGNETS."
 									break		
 								case ITEM.BOMB:
-									obj_inventory.itemBomb = true
-									obj_inventory.itemBombStock += obj_inventory.itemBombAdd
-									obj_control_ui.newLine = "YOU PICKED UP SOME BOMBS."
+									global.inventory.bomb.acquired = true
+									global.inventory.bomb.stock += global.inventory.bomb.add;
+									obj_ui.newLine = "YOU PICKED UP SOME BOMBS."
 									break								
-							}
-							// reset
-							
+							}					
 						}
 						if searchTarget.weapon != WEAPON.NONE
 						{
 							switch searchTarget.weapon
 							{
 								case WEAPON.PISTOL:
-									obj_inventory.hasWeaponPistol = true
-									obj_inventory.weaponPistolAmmo += obj_inventory.weaponPistolAdd
-									obj_control_ui.newLine = "YOU PICKED UP A PISTOL."
+									global.armory.pistol.acquired = true
+									global.armory.pistol.stock += global.armory.pistol.add;
+									obj_ui.newLine = "YOU PICKED UP A PISTOL."
 									break
 								case WEAPON.PLASMA:
-									obj_inventory.hasWeaponPlasma = true
-									obj_inventory.weaponPlasmaAmmo += obj_inventory.weaponPlasmaAdd
-									obj_control_ui.newLine = "YOU PICKED UP A PLASMA GUN."
+									global.armory.plasma.acquired = true
+									global.armory.plasma.stock += global.armory.plasma.add;
+									obj_ui.newLine = "YOU PICKED UP A PLASMA GUN."
 									break
 							}
 							searchTarget.weapon = WEAPON.NONE
@@ -164,7 +164,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				{
 					if searchTarget.object_index != obj_env_switch
 					{
-						obj_control_ui.newLine = "ALREADY SEARCHED."
+						obj_ui.newLine = "ALREADY SEARCHED."
 					}
 				}
 				if searchTarget.object_index == obj_env_switch
@@ -183,7 +183,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		}
 		
 		// find push target
-		else if obj_input.toggle_push
+		else if global.input.toggle_push
 		{
 			if pushTarget != noone
 			{
@@ -205,7 +205,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		}
 		
 		// set direction regardless if you can progress or not
-		if obj_input.move_right_press
+		if global.input.move_right_press
 		{
 			facing = DIR.RIGHT
 			if !obj_main.tick
@@ -213,7 +213,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				storeMove = OFF_MOVE.RIGHT
 			}
 		}
-		else if obj_input.move_up_press
+		else if global.input.move_up_press
 		{
 			facing = DIR.UP
 			if !obj_main.tick
@@ -221,7 +221,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				storeMove = OFF_MOVE.UP
 			}				
 		}
-		else if obj_input.move_left_press
+		else if global.input.move_left_press
 		{
 			facing = DIR.LEFT
 			if !obj_main.tick
@@ -229,7 +229,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				storeMove = OFF_MOVE.LEFT
 			}				
 		}
-		else if obj_input.move_down_press
+		else if global.input.move_down_press
 		{
 			facing = DIR.DOWN
 			if !obj_main.tick
@@ -238,7 +238,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			}				
 		}			
 		// not pressing any buttons
-		if !obj_input.moveRightHold and !obj_input.moveUpHold and !obj_input.moveLeftHold and !obj_input.moveDownHold
+		if !global.input.moveRightHold and !global.input.moveUpHold and !global.input.moveLeftHold and !global.input.moveDownHold
 		{
 			// frame 1 with legs together to appear standing
 			image_index = 1
@@ -255,7 +255,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			}
 		}
 		// change walking sprite based on direction
-		if obj_inventory.currentWeapon != WEAPON.UNARMED
+		if global.currentWeapon!= WEAPON.UNARMED
 		{
 			if shootTurnTimer == 0
 			{
@@ -280,8 +280,17 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		// a tick happens every 10ms 
 		if obj_main.tick
 		{
+			//obj_ui.x = obj_player_vic.x - obj_main.viewCenterX;
+			//obj_ui.y = obj_player_vic.y - obj_main.viewCenterY;
+
+			if global.currentWeapon == WEAPON.UNARMED
+			{
+				// sets sprite to unarmed array of directional sprites
+				obj_player_vic.sprite_index = obj_player_vic.spriteDir.unarmed[obj_player_vic.facing][facing]
+
+			}
 			/* if you hold a direction during a tick or had moved during no tick(OFF_MOVE), move the player */
-			if obj_input.moveRightHold or storeMove == OFF_MOVE.RIGHT
+			if global.input.moveRightHold or storeMove == OFF_MOVE.RIGHT
 			{
 				// delete stored move
 				storeMove = OFF_MOVE.NONE
@@ -290,24 +299,26 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				// actually moves the player with or without object to push
 				move_push(facing, id, pushTarget, xReach, yReach)
 			}
-			else if obj_input.moveUpHold or storeMove == OFF_MOVE.UP
+			else if global.input.moveUpHold or storeMove == OFF_MOVE.UP
 			{
 				storeMove = OFF_MOVE.NONE
 				reach(facing)
 				move_push(facing, id, pushTarget, xReach, yReach)		
 			}
-			else if obj_input.moveLeftHold or storeMove == OFF_MOVE.LEFT
+			else if global.input.moveLeftHold or storeMove == OFF_MOVE.LEFT
 			{
 				storeMove = OFF_MOVE.NONE
 				reach(facing)
 				move_push(facing, id, pushTarget, xReach, yReach)		
 			}				
-			else if obj_input.moveDownHold or storeMove == OFF_MOVE.DOWN
+			else if global.input.moveDownHold or storeMove == OFF_MOVE.DOWN
 			{
 				storeMove = OFF_MOVE.NONE
 				reach(facing)
 				move_push(facing, id, pushTarget, xReach, yReach)			
 			}
+			// move camera to follow player
+			camera_set_view_pos(view_camera[0], obj_player_vic.x - obj_main.viewCenterX, obj_player_vic.y - obj_main.viewCenterY);
 		}
 		#region SHOOTING
 		// tick down shoot turn timer
@@ -317,24 +328,24 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		}
 		
 		// shooting
-		if obj_inventory.currentWeapon != WEAPON.UNARMED
+		if global.currentWeapon!= WEAPON.UNARMED
 		{
 			// shooting directions
-			if obj_input.shoot_up_press
+			if global.input.shoot_up_press
 			{
-				player_shoot(DIR.UP, obj_inventory.currentWeapon)
+				player_shoot(DIR.UP, global.currentWeapon)
 			}
-			else if obj_input.shoot_down_press
+			else if global.input.shoot_down_press
 			{
-				player_shoot(DIR.DOWN, obj_inventory.currentWeapon)
+				player_shoot(DIR.DOWN, global.currentWeapon)
 			}
-			else if obj_input.shoot_left_press
+			else if global.input.shoot_left_press
 			{
-				player_shoot(DIR.LEFT, obj_inventory.currentWeapon)
+				player_shoot(DIR.LEFT, global.currentWeapon)
 			}
-			else if obj_input.shoot_right_press
+			else if global.input.shoot_right_press
 			{
-				player_shoot(DIR.RIGHT, obj_inventory.currentWeapon)
+				player_shoot(DIR.RIGHT, global.currentWeapon)
 			}
 		}
 		#endregion

@@ -1,6 +1,6 @@
 event_inherited()
 
-// // vertical walls
+// vertical walls
 if place_meeting(x + 8, y + 0, obj_env_wall)
 {
 	var wallRight = instance_place(x + 8, y + 8, obj_env_wall)
@@ -28,7 +28,7 @@ else
 	obj_player_vic.drawWallVert = false
 }
 
-//// horizontal walls, down
+// horizontal walls, down
 if place_meeting(x + 0, y + 8, obj_env_wall)
 {
 	var wallDown = instance_place(x + 8, y + 8, obj_env_wall)

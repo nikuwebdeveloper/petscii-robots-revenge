@@ -3,6 +3,8 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 {
 	if mode != MODE.DEAD
 	{
+		// find xReach, yReach
+		reach(facing)
 		//die
 		if hp <= 0
 		{
@@ -74,7 +76,8 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				{
 					mode = MODE.ALERT;
 				}
-				if place_meeting(x + xReach, y + yReach, obj_parent_solid) //bounce off objects
+				// bounce off objects
+				if place_meeting(x + xReach, y + yReach, obj_parent_solid) 
 				{
 					//reverse directions
 					if facing == DIR.UP
@@ -94,7 +97,8 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 						facing = DIR.LEFT;
 					}
 				}
-				move_empty(DIR.UP, xReach, yReach); //actually move
+				// move
+				move_empty(facing, xReach, yReach); 
 			}
 			else if mode == MODE.CONFUSE
 			{

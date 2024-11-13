@@ -1,1 +1,0 @@
-//macro PLAYER_NAME "Vic"

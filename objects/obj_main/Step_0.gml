@@ -1,3 +1,78 @@
+#region CONTROLS
+
+// main controls
+global.input.escape = keyboard_check_pressed(vk_escape);
+global.input.restart = keyboard_check_pressed(vk_f1);
+
+// move press
+global.input.move_up_press = keyboard_check_pressed(ord("W"));
+global.input.move_down_press = keyboard_check_pressed(ord("S"));
+global.input.move_left_press = keyboard_check_pressed(ord("A"));
+global.input.move_right_press = keyboard_check_pressed(ord("D"));
+
+//move hold
+global.input.moveUpHold = keyboard_check(ord("W"));
+global.input.moveDownHold = keyboard_check(ord("S"));
+global.input.moveLeftHold = keyboard_check(ord("A"));
+global.input.moveRightHold = keyboard_check(ord("D"));
+
+//prevents diagonals
+if global.input.move_up_press
+{
+	global.input.move_down_press = false;
+	global.input.move_right_press = false;
+	global.input.move_left_press = false;
+}
+else if global.input.move_right_press
+{
+	global.input.move_down_press = false;
+	global.input.move_left_press = false;
+	global.input.move_up_press = false;
+}
+else if global.input.move_down_press
+{
+	global.input.move_up_press = false;
+	global.input.move_right_press = false;
+	global.input.move_left_press = false;
+}
+else if global.input.move_left_press
+{
+	global.input.move_up_press = false;
+	global.input.move_right_press = false;
+	global.input.move_down_press = false;
+}
+
+
+//player_actions
+global.input.toggle_push = keyboard_check_pressed(ord("F"))
+global.input.use = keyboard_check_pressed(ord("E"))
+global.input.search = keyboard_check_pressed(ord("Q"))
+global.input.item_right = keyboard_check_pressed(ord("L"))
+global.input.item_left = keyboard_check_pressed(ord("K"))
+global.input.weapon_right = keyboard_check_pressed(ord("P"))
+global.input.weapon_left = keyboard_check_pressed(ord("O"))
+
+//shooting
+global.input.shoot_up_press = keyboard_check_pressed(vk_up)
+global.input.shoot_down_press = keyboard_check_pressed(vk_down)
+global.input.shoot_left_press = keyboard_check_pressed(vk_left)
+global.input.shoot_right_press = keyboard_check_pressed(vk_right)
+
+//options
+global.input.f9 = keyboard_check_pressed(vk_f9)
+
+//quit game
+if global.input.escape
+{
+	game_end();
+}
+//restart game
+if global.input.restart
+{
+	game_restart();
+}
+#endregion
+
 #region LAYERS
 // set layers so tiles can be randomized
 if switchLayerRead
@@ -39,12 +114,12 @@ if gameMode == GAMEMODE.GAMEPLAY
 		if flipperWallDepth
 		{
 			flipperWallDepth = false
-			if instance_exists(obj_control_ui)
+			if instance_exists(obj_ui)
 			{
 				if layer_exists("layer_tile_wallTop")
 				{
 					
-					layer_depth("layer_tile_wallTop", obj_control_ui.depth + 1)
+					layer_depth("layer_tile_wallTop", obj_ui.depth + 1)
 				}
 			}
 		}
@@ -153,8 +228,23 @@ else
 		if switchClearMsg
 		{
 			switchClearMsg = false;
-			obj_control_ui.newLine = "ROBOTS EXTERMINATED. PROCEED TO TELEPORTER."
+			obj_ui.newLine = "ROBOTS EXTERMINATED. PROCEED TO TELEPORTER."
 		}
 	}
 }
+#endregion
+
+#region LOAD
+
+
+// cover camera until screen is in correct position
+if loadCounter < loadCounterMax
+{
+	loadCounter++
+}
+else
+{
+	cameraCorrect = true
+}
+
 #endregion

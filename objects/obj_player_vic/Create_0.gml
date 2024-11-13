@@ -72,11 +72,11 @@ teleport = false
 stop = false
 
 //cardboards (draw sprite on top of instance)
-if obj_inventory.currentWeapon == WEAPON.UNARMED
+if global.currentWeapon== WEAPON.UNARMED
 {
 	sprite_index = spr_player_vic_idle_unarmed
 }
-else if obj_inventory.currentWeapon == WEAPON.PISTOL or obj_inventory.currentWeapon == WEAPON.PLASMA
+else if global.currentWeapon== WEAPON.PISTOL or global.currentWeapon== WEAPON.PLASMA
 {
 	sprite_index = s_vic_idle
 }
@@ -85,10 +85,10 @@ spriteDir =
 {
 	unarmed :
 	[
-		spr_player_vic_idle_unarmed,
-		spr_player_vic_idle_unarmed,
-		spr_player_vic_idle_unarmed,
-		spr_player_vic_idle_unarmed,
+		[spr_player_vic_walk_right_unarmed,spr_player_vic_walk_right_unarmed,spr_player_vic_walk_right_unarmed,spr_player_vic_walk_right_unarmed],
+		[spr_player_vic_walk_up_unarmed,spr_player_vic_walk_up_unarmed,spr_player_vic_walk_up_unarmed,spr_player_vic_walk_up_unarmed],
+		[spr_player_vic_walk_left_unarmed,spr_player_vic_walk_left_unarmed,spr_player_vic_walk_left_unarmed,spr_player_vic_walk_left_unarmed],
+		[spr_player_vic_walk_down_unarmed,spr_player_vic_walk_down_unarmed,spr_player_vic_walk_down_unarmed,spr_player_vic_walk_down_unarmed],
 	],
 	pistol :
 	[
@@ -100,9 +100,14 @@ spriteDir =
 	],
 	plasma :
 	[
-		s_vic_right_sRight,
-		s_vic_up_sUp,
-		s_vic_left_sLeft,
-		s_vic_down_sDown
+			/* right, up, left, down*/
+		/* 0 */[s_vic_right_sRight, s_vic_right_sUp, s_vic_right_sLeft, s_vic_right_sDown], /* done */
+		/* 1 */[s_vic_up_sRight, s_vic_up_sUp, s_vic_up_sLeft, s_vic_up_sDown], /* done */
+		/* 2 */[s_vic_left_sRight, s_vic_left_sUp, s_vic_left_sLeft, s_vic_left_sDown],
+		/* 3 */[s_vic_down_sRight, s_vic_down_sUp, s_vic_down_sLeft, s_vic_down_sDown] /* done */
+		//s_vic_right_sRight,
+		//s_vic_up_sUp,
+		//s_vic_left_sLeft,
+		//s_vic_down_sDown
 	]
 }

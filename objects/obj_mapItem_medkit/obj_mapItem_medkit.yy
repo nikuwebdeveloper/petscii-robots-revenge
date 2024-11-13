@@ -6,8 +6,8 @@
   "name":"obj_mapItem_medkit",
   "overriddenProperties":[],
   "parent":{
-    "name":"petscii-robots-revenge",
-    "path":"petscii-robots-revenge.yyp",
+    "name":"map item",
+    "path":"folders/Objects/map item.yy",
   },
   "parentObjectId":{
     "name":"obj_parent_mapItem",

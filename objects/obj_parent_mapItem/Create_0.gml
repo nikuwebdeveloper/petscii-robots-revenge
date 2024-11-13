@@ -9,7 +9,18 @@ if place_meeting(x,y,obj_parent_env)
 	{
 		case obj_mapItem_medkit:
 			itemToGive = ITEM.MEDKIT
-		break
+			break
+		case obj_mapItem_bomb:
+			itemToGive = ITEM.BOMB
+			break
+		case obj_mapItem_emp:
+			itemToGive = ITEM.EMP
+			break;
+		case obj_mapItem_magnet:
+			itemToGive = ITEM.MAGNET
+			break;
+		default:
+			break
 	}
 	target.item = itemToGive
 }

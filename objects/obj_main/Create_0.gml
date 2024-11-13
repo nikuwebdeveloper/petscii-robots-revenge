@@ -59,6 +59,42 @@ enum TILE
 	FUNGUS,
 }
 
+global.input =
+{
+	escape : false,
+	restart : false,
+
+	//move press
+	move_up_press : false,
+	move_down_press : false,
+	move_left_press : false,
+	move_right_press : false,
+
+	//shoot direction
+	shoot_up_press : false,
+	shoot_down_press : false,
+	shoot_left_press : false,
+	shoot_right_press : false,
+
+	//move hold
+	moveUpHold : false,
+	moveDownHold : false,
+	moveLeftHold : false,
+	moveRightHold : false,
+
+	//player actions
+	toggle_push : false,
+	search : false,
+	use : false,
+	item_right : false,
+	item_left : false,
+	weapon_right : false,
+	weapon_left : false,
+
+	//options
+	f9 : false,
+}
+
 //set game mode
 gameMode = GAMEMODE.GAMEPLAY
 
@@ -159,6 +195,120 @@ flipperWallDepth = true
 
 layerInteract = 0
 
-#region PARAMATER GROUPS
+global.inventory = 
+{
+	medkit :
+	{
+		type: ITEM.MEDKIT,
+		name: "MEDKIT",
+		stock: 0,
+		add: 25,
+		limit: 99,
+		acquired: false,
+		sprite:
+		{
+			pickup: spr_empty,
+			deploy: spr_empty,
+			ui: spr_ui_item_medkit
+		}
+	},
+	emp:
+	{
+		type: ITEM.EMP,
+		name: "EMP",
+		stock: 0,
+		add: 1,
+		limit: 10,
+		acquired: false,
+		sprite:
+		{
+			pickup: spr_empty,
+			deploy: spr_deployable_emp,
+			ui: spr_ui_item_emp
+		}
+	},
+	magnet :
+	{
+		type: ITEM.MAGNET,
+		name: "MAGNET",
+		stock: 0,
+		add: 1,
+		limit: 10,
+		acquired: false,
+		sprite:
+		{
+			pickup: spr_empty,
+			deploy: spr_deployable_magnet,
+			ui: spr_ui_item_magnet
+		}
+	},
+	bomb :
+	{
+		type: ITEM.BOMB,
+		name: "BOMB",
+		stock: 0,
+		add: 1,
+		limit: 10,
+		acquired: false,
+		sprite:
+		{
+			pickup: spr_empty,
+			deploy: spr_deployable_bomb,
+			ui: spr_ui_item_bomb
+		}
+	}
+	
+}
 
+global.armory =
+{
+	pistol:
+	{
+		type: WEAPON.PISTOL,
+		name: "PISTOL",
+		stock: 0,
+		add: 99,
+		limit: 99,
+		acquired: false,
+		sprite:
+		{
+			pickup: spr_empty,
+			shot: spr_empty,
+			ui: spr_ui_item_pistol
+		}
+	},
+	plasma:
+	{
+		type: WEAPON.PLASMA,		
+		name: "PLASMA",
+		stock: 0,
+		add: 50,
+		limit: 99,
+		acquired: false,
+		sprite:
+		{
+			pickup: spr_empty,
+			shot: spr_empty,
+			ui: spr_ui_item_plasma
+		}
+	}
+}
+
+// player inventory
+// player's current item selected
+global.currentItem = WEAPON.NONE
+global.currentWeapon = WEAPON.UNARMED
+
+#region //camera
+cameraX = 0
+cameraY = 0
+viewCenterX = 0;
+viewCenterY = 0;
+
+//reset camera
+camera_set_view_pos(view_camera[0],0,0);
 #endregion
+
+cameraCorrect = false
+loadCounter = 0
+loadCounterMax = 5

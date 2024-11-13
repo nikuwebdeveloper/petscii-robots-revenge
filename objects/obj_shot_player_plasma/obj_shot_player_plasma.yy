@@ -34,10 +34,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_shot_player_plasma",
-    "path":"sprites/spr_shot_player_plasma/spr_shot_player_plasma.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

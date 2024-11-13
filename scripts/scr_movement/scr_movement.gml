@@ -1,21 +1,21 @@
-function reach(facing)
+function reach(_facing)
 {
-	if facing == DIR.UP
+	if _facing == DIR.UP
 	{
 		xReach = 0;
 		yReach = -8
 	}
-	else if facing == DIR.DOWN
+	else if _facing == DIR.DOWN
 	{
 		xReach = 0;
 		yReach = 8;
 	}
-	else if facing == DIR.LEFT
+	else if _facing == DIR.LEFT
 	{
 		xReach = -8;
 		yReach = 0;
 	}
-	else if facing == DIR.RIGHT
+	else if _facing == DIR.RIGHT
 	{
 		xReach = 8;
 		yReach = 0;
