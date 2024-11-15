@@ -19,7 +19,7 @@ if place_meeting(x + 8, y + 0, obj_env_wall)
 		}
 		if obj_player_vic.drawWallVert
 		{
-			draw_sprite(spr_wall_full_0, 0, wallRight.x -16, wallRight.y - 0)
+			draw_sprite(spr_wall_full_0, 0, wallRight.x - 16, wallRight.y - 0)
 		}
 	}
 }
