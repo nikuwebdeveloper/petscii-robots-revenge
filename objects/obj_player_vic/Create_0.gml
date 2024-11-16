@@ -66,7 +66,7 @@ pushTargetBlocked = false
 searchTarget = noone
 
 currentDir = DIR.UP
-pushDir = DIR.UP
+facingDir = DIR.UP
 
 teleport = false
 stop = false

@@ -185,21 +185,23 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		// find push target
 		else if global.input.toggle_push
 		{
-			if pushTarget != noone
+			// press push 
+			if pushTarget == noone
 			{
-				pushTarget = noone
-				facing = pushDir
+				facingDir = facing
 			}
 			else
 			{
-				pushDir = facing
-				pushTarget = instance_place(x + xReach, y + yReach, obj_parent_solid)
-				if pushTarget != noone
+				facing = facingDir
+			}
+
+			pushTarget = instance_place(x + xReach, y + yReach, obj_parent_solid)
+			if pushTarget != noone
+			{
+				// if the object can't be moved, unassign the variable
+				if !pushTarget.moveable
 				{
-					if !pushTarget.canMove
-					{
-						pushTarget = noone
-					}
+					pushTarget = noone
 				}
 			}
 		}
@@ -254,39 +256,21 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				image_index = 0
 			}
 		}
-		// change walking sprite based on direction
-		if global.currentWeapon!= WEAPON.UNARMED
-		{
-			if shootTurnTimer == 0
-			{
-				if facing == DIR.RIGHT
-				{
-					sprite_index = s_vic_right_sRight
-				}
-				else if facing == DIR.UP
-				{
-					sprite_index = s_vic_up_sUp
-				}
-				else if facing == DIR.LEFT
-				{
-					sprite_index = s_vic_left_sLeft
-				}
-				else if facing == DIR.DOWN
-				{
-					sprite_index = s_vic_down_sDown
-				}
-			}
-		}	
 		// a tick happens every 10ms 
 		if obj_main.tick
 		{
-			//obj_ui.x = obj_player_vic.x - obj_main.viewCenterX;
-			//obj_ui.y = obj_player_vic.y - obj_main.viewCenterY;
-
 			if global.currentWeapon == WEAPON.UNARMED
 			{
 				// sets sprite to unarmed array of directional sprites
-				obj_player_vic.sprite_index = obj_player_vic.spriteDir.unarmed[obj_player_vic.facing][facing]
+				
+				if pushTarget == noone
+				{
+					obj_player_vic.sprite_index = obj_player_vic.spriteDir.unarmed[obj_player_vic.facing][facing]
+				}
+				else
+				{
+					obj_player_vic.sprite_index = obj_player_vic.spriteDir.unarmed[obj_player_vic.facingDir][facingDir]
+				}
 
 			}
 			/* if you hold a direction during a tick or had moved during no tick(OFF_MOVE), move the player */

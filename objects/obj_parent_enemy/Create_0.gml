@@ -16,7 +16,7 @@ attack = false;
 alertTarget = noone;
 spark = noone;
 deathSwitch = true;
-canMove = false;
+moveable = false;
 
 //shoot through
 pass = false;

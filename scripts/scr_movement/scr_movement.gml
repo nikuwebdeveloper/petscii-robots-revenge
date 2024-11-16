@@ -72,7 +72,7 @@ function blast_move(xx,yy, i)
 	{
 		with (target)
 		{
-			if canMove
+			if moveable
 			{
 				if place_empty(x + xx,y + yy, obj_parent_solid)
 				{

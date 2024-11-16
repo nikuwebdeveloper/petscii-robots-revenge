@@ -1,4 +1,4 @@
-canMove = false;
+moveable = false;
 item = ITEM.NONE
 weapon = WEAPON.NONE
 canSearch = false;
@@ -53,7 +53,7 @@ else if object_index == obj_env_plant_tree
 else if object_index == obj_env_box_brown_normal
 {
 	hp = 10;
-	canMove = true;
+	moveable = true;
 	canSearch = true;
 	mask_index = spr_hitbox_16x16;
 	item = ITEM.NONE;
@@ -62,7 +62,7 @@ else if object_index == obj_env_barrel
 {
 	hp = 1;
 	pass = false;
-	canMove = true;
+	moveable = true;
 	mask_index = spr_hitbox_16x16;
 	boomSwitch = true;
 	range = 3;
@@ -70,7 +70,7 @@ else if object_index == obj_env_barrel
 else if object_index == obj_env_plant_potted
 {
 	hp = 5;
-	canMove = true;
+	moveable = true;
 	mask_index = spr_hitbox_16x16;
 }
 else if object_index == obj_env_plant_tree
@@ -88,7 +88,7 @@ or object_index == obj_env_chair_left
 or object_index == obj_env_chair_right
 {
 	hp = 5;
-	canMove = true;
+	moveable = true;
 	mask_index = spr_hitbox_16x16;
 }
 else if object_index == obj_env_table_heavy_vert_center

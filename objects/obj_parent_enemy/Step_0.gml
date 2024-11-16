@@ -142,11 +142,11 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			}
 			else if mode == MODE.STUN
 			{
-				canMove = true;
+				moveable = true;
 				image_speed = 0;
 				if stunTimer == stunTimerMax
 				{
-					canMove = false;
+					moveable = false;
 					image_speed = 1;
 					stunTimer = 0;
 					mode = MODE.IDLE
