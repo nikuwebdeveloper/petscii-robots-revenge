@@ -28,7 +28,7 @@ function player_shoot(_direction, _weapon)
 	{
 		if instance_exists(obj_player_vic)
 		{
-			obj_player_vic.shootTurnTimer = shootTurnTimerMax
+			//obj_player_vic.shootTurnTimer = shootTurnTimerMax
 			var xOffset = 0
 			var yOffset = 0
 			switch _direction

@@ -26,7 +26,7 @@ else if object_index == obj_env_switch
 	if active
 	{
 		targetBridge.active = true
-		targetBridge.maxBridgeLength = maxBridgeLength
+		//targetBridge.maxBridgeLength = maxBridgeLength
 		image_index = 0
 	}
 	else

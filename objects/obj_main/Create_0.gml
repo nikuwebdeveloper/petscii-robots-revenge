@@ -135,6 +135,8 @@ enemyCount =
 	total : 0
 }
 
+
+
 switchEnemyDeadCount = true;
 switchMaze = true;
 
@@ -294,10 +296,11 @@ global.armory =
 	}
 }
 
+
 // player inventory
 // player's current item selected
 global.currentItem = WEAPON.NONE
-global.currentWeapon = WEAPON.UNARMED
+global.currentWeapon = WEAPON.NONE
 
 #region //camera
 cameraX = 0

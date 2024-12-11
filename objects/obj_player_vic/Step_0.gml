@@ -1,17 +1,23 @@
 event_inherited()
 if obj_main.gameMode == GAMEMODE.GAMEPLAY
 {
+	// calculate reach in-front of player based on facing direction
+	reach(facing)
 	if alive
 	{
-		reach(facing)
-		#region HAZARD
-		#endregion
-
-		if instance_exists(obj_parent_shot_player)
-		{	/*FIX THIS*/
-			bulletDepth = - 3299 //set bullet depth higher than the lowest y position for y = - y - x
+		// check if dead
+		if hp <= 0
+		{
+			dead = true
 		}
-		if obj_main.levelClear == "clear" and obj_main.tick //robots are all dead
+		// adjust bullet 
+		if instance_exists(obj_parent_shot_player)
+		{	/*FIX THIS*///set bullet depth higher than the lowest y position for y = - y - x
+			bulletDepth = - 3299 
+		}
+		
+		// level complete
+		if obj_main.levelClear == "clear" and obj_main.tick 
 		{
 			if place_meeting(x + xReach, y + yReach, obj_env_teleporter_base) //oppisite!
 			{
@@ -34,12 +40,9 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				}
 			}
 		}
-		//set dead
-		if hp <= 0
-		{
-			dead = true
-		}
-		//use item
+
+		#region PLAYER ACTIONS
+		// use item in inventory
 		if global.input.use
 		{
 			if global.currentItem == ITEM.MEDKIT
@@ -91,9 +94,10 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			}
 		}
 		
-		// search for item
+		// search for item near player
 		if global.input.search
 		{
+			instance_create_depth(x + xReach * 2, y + yReach*2, depth + 16, obj_selectorCube)
 			//identify target to search
 			var searchTarget = instance_place(x + xReach, y + yReach, obj_parent_env)
 			// if the search target exists
@@ -181,31 +185,28 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				}
 			}
 		}
-		
-		// find push target
-		else if global.input.toggle_push
+		// push object
+		if global.input.toggle_push
 		{
-			// press push 
 			if pushTarget == noone
 			{
-				facingDir = facing
-			}
-			else
-			{
-				facing = facingDir
-			}
-
-			pushTarget = instance_place(x + xReach, y + yReach, obj_parent_solid)
-			if pushTarget != noone
-			{
+				pushTarget = instance_place(x + xReach, y + yReach, obj_parent_solid)
 				// if the object can't be moved, unassign the variable
 				if !pushTarget.moveable
 				{
 					pushTarget = noone
 				}
 			}
+			// acts as a toggle to allow the player to let go of object
+			else if pushTarget != noone
+			{
+				pushTarget = noone
+				// turn on boolean to prevent player from automatically turning around to face the direction the last input was
+				letGo = true
+			}
 		}
 		
+		// MOVEMENT
 		// set direction regardless if you can progress or not
 		if global.input.move_right_press
 		{
@@ -224,7 +225,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			}				
 		}
 		else if global.input.move_left_press
-		{
+		{	
 			facing = DIR.LEFT
 			if !obj_main.tick
 			{
@@ -248,6 +249,8 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 		}
 		else
 		{
+			// resets boolean
+			letGo = false
 			// take first step
 			if switchBeginMove
 			{
@@ -262,14 +265,19 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			if global.currentWeapon == WEAPON.UNARMED
 			{
 				// sets sprite to unarmed array of directional sprites
-				
+				// not pushing an object
 				if pushTarget == noone
 				{
-					obj_player_vic.sprite_index = obj_player_vic.spriteDir.unarmed[obj_player_vic.facing][facing]
+					// don't change sprite if player just let go of object
+					if !letGo
+					{
+						obj_player_vic.sprite_index = obj_player_vic.spriteDir.unarmed[obj_player_vic.facing][facing]
+					}
 				}
+				// pushing an object
 				else
 				{
-					obj_player_vic.sprite_index = obj_player_vic.spriteDir.unarmed[obj_player_vic.facingDir][facingDir]
+				//	obj_player_vic.sprite_index = obj_player_vic.spriteDir.unarmed[obj_player_vic.facingDir][facingDir]
 				}
 
 			}
@@ -304,12 +312,11 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			// move camera to follow player
 			camera_set_view_pos(view_camera[0], obj_player_vic.x - obj_main.viewCenterX, obj_player_vic.y - obj_main.viewCenterY);
 		}
-		#region SHOOTING
 		// tick down shoot turn timer
-		if shootTurnTimer > 0
-		{
-			shootTurnTimer--
-		}
+		//if shootTurnTimer > 0
+		//{
+		//	shootTurnTimer--
+		//}
 		
 		// shooting
 		if global.currentWeapon!= WEAPON.UNARMED

@@ -19,10 +19,14 @@ if place_meeting(x,y,obj_parent_env)
 		case obj_mapItem_magnet:
 			itemToGive = ITEM.MAGNET
 			break;
+		case obj_mapWeapon_pistol:
+			weaponToGive = WEAPON.PISTOL
+			break;
 		default:
 			break
 	}
 	target.item = itemToGive
+	target.weapon = weaponToGive
 }
 
 instance_destroy()

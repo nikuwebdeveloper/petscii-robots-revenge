@@ -7,7 +7,7 @@ if !broken
 		if confuseSwitch
 		{
 			confuseSwitch = false;
-			target.mode = "confuse";
+			target.mode = MODE.CONFUSE
 		}
 	}
 }

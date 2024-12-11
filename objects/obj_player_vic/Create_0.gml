@@ -23,8 +23,8 @@ tilemap = layer_tilemap_get_id(layerID)
 dead = false
 deathTimer = 0
 deathTimerMax = 60*5
-shootTurnTimer = 0
-shootTurnTimerMax = 20
+//shootTurnTimer = 0
+//shootTurnTimerMax = 20
 
 //gib
 gibSwitch = true
@@ -111,3 +111,5 @@ spriteDir =
 		//s_vic_down_sDown
 	]
 }
+
+letGo = false
