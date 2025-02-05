@@ -315,3 +315,18 @@ camera_set_view_pos(view_camera[0],0,0);
 cameraCorrect = false
 loadCounter = 0
 loadCounterMax = 5
+
+#region PATHFINDING
+path = 0;
+global.pathGrid = 0;
+
+//cell size
+cell_width = 8;
+cell_height = 8;
+
+//room size
+hcells = room_width div cell_width;
+vcells = room_height div cell_height;
+
+global.pathGrid = mp_grid_create(0, 0, hcells, vcells, cell_width, cell_height);
+#endregion

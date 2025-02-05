@@ -1,4 +1,4 @@
 event_inherited();
-pass = false;
+pass = false
 //capBottom = false;
 //capLeft = false;

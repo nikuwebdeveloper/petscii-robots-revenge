@@ -11,6 +11,7 @@ boomSwitch = false; //for exploding
 on = false;
 switchTile = true;
 drawCap = false
+die = false
 
 spriteCardboard = 
 {
@@ -24,14 +25,16 @@ if object_index == obj_env_wall
 {
 	hp = -1
 	pass = false
+    die = false
 	placed = true
-	tileWallTop = layer_tilemap_get_id(layer_get_name("layer_tile_wallTop"))
-	tileWallBottom = layer_tilemap_get_id(layer_get_name("layer_tile_wallBottom"))
-	type = "none"
-	up = y - 16
-	down = y + 16
-	left = x - 16
-	right = x + 16
+    tileWallTop = layer_tilemap_get_id("layer_tile_wallTop")
+    tileWallBottom = layer_tilemap_get_id("layer_tile_wallBottom")
+	mask_index = spr_hitbox_wall
+}
+else if object_index == obj_env_wall_breakable
+{
+	hp = 1
+	//pass = false
 	mask_index = spr_hitbox_wall
 }
 else if object_index == obj_env_autoBridge
@@ -48,7 +51,7 @@ else if object_index == obj_env_switch
 else if object_index == obj_env_plant_tree
 {
 	var rand = irandom_range(0,1)
-	 sprite_index = rand ? spr_env_plant_tree_a :  spr_env_plant_tree_b
+	sprite_index = rand ? spr_env_plant_tree_a :  spr_env_plant_tree_b
 }
 else if object_index == obj_env_box_brown_normal
 {

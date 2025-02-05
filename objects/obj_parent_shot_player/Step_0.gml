@@ -57,22 +57,22 @@ if object_index == obj_shot_player_pistol
 {
 	if place_meeting(x+xReach, y+yReach, obj_parent_solid)
 	{
-		var target = instance_place(x + xReach, y + yReach,obj_parent_solid)
-		if !place_meeting(x,y, obj_player_vic){
-		//var targetEnv = instance_place(x,y,obj_parent_env)
-		if instance_exists(target)
+		var target = instance_place(x + xReach, y + yReach, obj_parent_solid)
+		if !place_meeting(x,y, obj_player_vic)
 		{
-			target.alertTarget = creator;
-			target.hp = target.hp - dmg;
-			if !target.pass //if can't pass
+			if instance_exists(target)
 			{
-				instance_destroy();
-				if instance_exists(target)
+				target.alertTarget = creator;
+				target.hp = target.hp - dmg;
+				if !target.pass //if can't pass
 				{
-					instance_create_depth(x,y,depth,obj_effect_explosion)
+					instance_destroy();
+					if instance_exists(target)
+					{
+						instance_create_depth(x,y,depth,obj_effect_explosion)
+					}
 				}
 			}
-		}
 		}
 	}
 	//if place_meeting(x, y, obj_parent_solid) or place_meeting(x+reachX, y+reachY, obj_parent_enemy)

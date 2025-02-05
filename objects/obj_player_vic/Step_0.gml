@@ -16,31 +16,6 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 			bulletDepth = - 3299 
 		}
 		
-		// level complete
-		if obj_main.levelClear == "clear" and obj_main.tick 
-		{
-			if place_meeting(x + xReach, y + yReach, obj_env_teleporter_base) //oppisite!
-			{
-				teleport = true
-				x = obj_env_teleporter_base.x //move to teleporter
-				y = obj_env_teleporter_base.y
-			}
-			if teleport
-			{
-				if !instance_exists(obj_effect_portal) //create one portal
-				{
-					instance_create_depth(obj_env_teleporter_base.x, obj_env_teleporter_base.y, depth, obj_effect_portal) 
-				}
-				sprite_index = spr_player_vic_teleport //fade vic out
-				if image_index >= 43 //change rooms once vic's animation is over
-				{
-					teleport = false //reset
-					obj_main.gameMode = GAMEMODE.STATUS
-					room = room_status
-				}
-			}
-		}
-
 		#region PLAYER ACTIONS
 		// use item in inventory
 		if global.input.use
@@ -309,17 +284,24 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				reach(facing)
 				move_push(facing, id, pushTarget, xReach, yReach)			
 			}
+			// set sprite counter to return the player to his original sprite after turning to shoot
+			if shootTurnTimer > 0
+			{
+				shootTurnTimer--
+			}
+			else
+			{
+				obj_player_vic.sprite_index = obj_player_vic.spriteDir.pistol[obj_player_vic.facing][facing]
+				// this should prevent this code block from running too often ???
+				shootTurnTimer = -1
+			}
+
 			// move camera to follow player
 			camera_set_view_pos(view_camera[0], obj_player_vic.x - obj_main.viewCenterX, obj_player_vic.y - obj_main.viewCenterY);
 		}
-		// tick down shoot turn timer
-		//if shootTurnTimer > 0
-		//{
-		//	shootTurnTimer--
-		//}
 		
 		// shooting
-		if global.currentWeapon!= WEAPON.UNARMED
+		if global.currentWeapon != WEAPON.UNARMED
 		{
 			// shooting directions
 			if global.input.shoot_up_press

@@ -21,17 +21,7 @@ moveable = false;
 //shoot through
 pass = false;
 
-//pathfinding
-path = 0;
-grid = 0;
 
-//cell size
-cell_width = 8;
-cell_height = 8;
-
-//room size
-hcells = room_width div cell_width;
-vcells = room_height div cell_height;
 
 
 //path add instance
@@ -40,7 +30,6 @@ addSwitch = true;
 if object_index == obj_enemy_hoverbot
 {
 	path = path_add();
-	grid = mp_grid_create(0, 0, hcells, vcells, cell_width, cell_height);
 	var randDir = irandom_range(0,1);
 	if randDir == 0
 	{
@@ -51,4 +40,28 @@ if object_index == obj_enemy_hoverbot
 		facing = DIR.LEFT;
 	}
 	hp = 10;
+	spriteDir =
+	{
+		move: [spr_enemy_hoverbot_right, spr_enemy_hoverbot_up, spr_enemy_hoverbot_left, spr_enemy_hoverbot_down],
+		attack:[spr_enemy_hoverbot_right, spr_enemy_hoverbot_up, spr_enemy_hoverbot_left, spr_enemy_hoverbot_down]
+	}
+}
+else if object_index == obj_enemy_moverbot
+{
+	path = path_add();
+	var randDir = irandom_range(0,1);
+	if randDir == 0
+	{
+		facing = DIR.UP;
+	}
+	else
+	{
+		facing = DIR.LEFT;
+	}
+	hp = 10;
+	spriteDir =
+	{
+		move: [spr_enemy_moverbot_right, spr_enemy_moverbot_up, spr_enemy_moverbot_left, spr_enemy_moverbot_down],
+		attack:[spr_enemy_moverbot_right_attack, spr_enemy_moverbot_up_attack, spr_enemy_moverbot_left_attack, spr_enemy_moverbot_down]
+	}
 }

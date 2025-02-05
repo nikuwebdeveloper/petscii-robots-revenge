@@ -51,25 +51,21 @@ else if object_index == obj_env_teleporter_base
 }
 else if object_index == obj_env_wall
 {
+    var up = y - 16
+    var down = y + 16
+    var left = x - 16
+    var right = x + 16
 	if switchTile
 	{
-		switchTile = false;
-		///---
+        switchTile = false;
+		// ---
 		if !place_meeting(x,up,obj_env_wall) and !place_meeting(x,down,obj_env_wall) 
 		and place_meeting(left,y,obj_env_wall) and place_meeting(right,y,obj_env_wall)
 		{
-			//if !place_meeting(x,up,obj_env_wall)// and !place_meeting(right,y,obj_env_wall)
-			////and !place_meeting(x,down,obj_env_wall)
-			//{
-			//	//tilemap_set_at_pixel(tileWallTop, 2, x, up);
-			//}	
-			
 			tilemap_set_at_pixel(tileWallBottom, 13, x, y);
-			//tilemap_set_at_pixel(tileWallBottom, 13, left, y);
 			tilemap_set_at_pixel(tileWallTop, 2, left, up);
-
 		}
-		//o--
+		// o--
 		else if !place_meeting(x,up,obj_env_wall) and !place_meeting(x,down,obj_env_wall) 
 		and !place_meeting(left,y,obj_env_wall) and place_meeting(right,y,obj_env_wall)
 		{
@@ -78,7 +74,7 @@ else if object_index == obj_env_wall
 			tilemap_set_at_pixel(tileWallTop, 51, left, up);
 			tilemap_set_at_pixel(tileWallTop, 2, x, up);
 		}	
-		//--o
+		// --o
 		else if !place_meeting(x,up,obj_env_wall) and !place_meeting(x,down,obj_env_wall) 
 		and place_meeting(left,y,obj_env_wall) and !place_meeting(right,y,obj_env_wall)
 		{
@@ -96,9 +92,7 @@ else if object_index == obj_env_wall
 			{
 				tilemap_set_at_pixel(tileWallTop, 11, left, y)
 			}
-
 			tilemap_set_at_pixel(tileWallTop, 11, left, up);
-			//tilemap_set_at_pixel(tileWallBottom, 5, x, up);
 		}	
 		// i
 		else if !place_meeting(x,up,obj_env_wall) and place_meeting(x,down,obj_env_wall) 
@@ -116,7 +110,6 @@ else if object_index == obj_env_wall
 			tilemap_set_at_pixel(tileWallBottom, 45, x, y);
 			tilemap_set_at_pixel(tileWallBottom, 41, left, y);
 			tilemap_set_at_pixel(tileWallTop, 71, left, up);
-			//tilemap_set_at_pixel(tileWallTop, 5, x, up);
 		}	
 		// L
 		else if place_meeting(x,up,obj_env_wall) and !place_meeting(x,down,obj_env_wall) 
@@ -132,8 +125,6 @@ else if object_index == obj_env_wall
 		and place_meeting(left,y,obj_env_wall) and !place_meeting(right,y,obj_env_wall)
 		{
 			tilemap_set_at_pixel(tileWallBottom, 45, x, y);
-			//tilemap_set_at_pixel(tileWallTop,13, left, y);
-			//tilemap_set_at_pixel(tileWallTop, 22, x, up);
 			tilemap_set_at_pixel(tileWallTop, 34, left, up);
 		}	
 		// 7
@@ -159,8 +150,6 @@ else if object_index == obj_env_wall
 		and place_meeting(left,y,obj_env_wall) and place_meeting(right,y,obj_env_wall)
 		{
 			tilemap_set_at_pixel(tileWallBottom, 12, x, y);
-			//tilemap_set_at_pixel(tileWallTop, 11, left, y);
-			//tilemap_set_at_pixel(tileWallTop, 2, x, up);
 			tilemap_set_at_pixel(tileWallTop, 28, left, up);
 		}	
 		// o
@@ -186,9 +175,7 @@ else if object_index == obj_env_wall
 		and !place_meeting(left,y,obj_env_wall) and place_meeting(right,y,obj_env_wall)
 		{
 			tilemap_set_at_pixel(tileWallBottom, 12, x, y);
-			//tilemap_set_at_pixel(tileWallBottom, 11, left, y);
 			tilemap_set_at_pixel(tileWallTop, 17, left, up);
-			//tilemap_set_at_pixel(tileWallTop, 2, x, up);
 		}
 		//triangle down
 		if !place_meeting(x,up,obj_env_wall) and place_meeting(x,down,obj_env_wall) 
@@ -204,9 +191,33 @@ else if object_index == obj_env_wall
 		and place_meeting(left,y,obj_env_wall) and !place_meeting(right,y,obj_env_wall)
 		{
 			tilemap_set_at_pixel(tileWallBottom, 22, x, y);
-			//tilemap_set_at_pixel(tileWallBottom, 11, left, y);
 			tilemap_set_at_pixel(tileWallTop, 19, left, up);
-			//tilemap_set_at_pixel(tileWallTop, 2, x, up);
 		}
 	}
+    if die
+    {
+        tilemap_set_at_pixel(tileWallTop, 0, left, up);
+        tilemap_set_at_pixel(tileWallBottom, 0, left, y);
+        if place_meeting(x,up,obj_env_wall)
+        {
+            var target = instance_place(x,up,obj_env_wall)
+            target.switchTile = true
+        }
+        if place_meeting(x,down,obj_env_wall)
+        {
+            var target = instance_place(x,down,obj_env_wall)
+            target.switchTile = true
+        }
+        if place_meeting(left,y,obj_env_wall)
+        {
+            var target = instance_place(left,y,obj_env_wall)
+            target.switchTile = true
+        }
+        if place_meeting(right,y,obj_env_wall)
+        {
+            var target = instance_place(right,y,obj_env_wall)
+            target.switchTile = true
+        }
+        instance_destroy()
+    }
 }

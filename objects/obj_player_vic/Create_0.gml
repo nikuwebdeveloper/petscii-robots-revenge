@@ -23,8 +23,8 @@ tilemap = layer_tilemap_get_id(layerID)
 dead = false
 deathTimer = 0
 deathTimerMax = 60*5
-//shootTurnTimer = 0
-//shootTurnTimerMax = 20
+shootTurnTimer = 0
+shootTurnTimerMax = 20
 
 //gib
 gibSwitch = true
@@ -100,15 +100,11 @@ spriteDir =
 	],
 	plasma :
 	[
-			/* right, up, left, down*/
+		/* right, up, left, down*/
 		/* 0 */[s_vic_right_sRight, s_vic_right_sUp, s_vic_right_sLeft, s_vic_right_sDown], /* done */
 		/* 1 */[s_vic_up_sRight, s_vic_up_sUp, s_vic_up_sLeft, s_vic_up_sDown], /* done */
 		/* 2 */[s_vic_left_sRight, s_vic_left_sUp, s_vic_left_sLeft, s_vic_left_sDown],
 		/* 3 */[s_vic_down_sRight, s_vic_down_sUp, s_vic_down_sLeft, s_vic_down_sDown] /* done */
-		//s_vic_right_sRight,
-		//s_vic_up_sUp,
-		//s_vic_left_sLeft,
-		//s_vic_down_sDown
 	]
 }
 

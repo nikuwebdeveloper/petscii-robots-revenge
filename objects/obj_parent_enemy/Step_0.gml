@@ -27,7 +27,7 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 						var instance = instance_find(obj_parent_enemy, i);
 						if instance != id
 						{
-							mp_grid_add_instances(grid, instance, false);
+							mp_grid_add_instances(global.pathGrid, instance, false);
 						}
 					}
 					//add locked doors
@@ -42,9 +42,9 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 					// }
 					
 					//add all environmental objects
-					mp_grid_add_instances(grid, obj_parent_env, false);
+					mp_grid_add_instances(global.pathGrid, obj_parent_env, false);
 					//if path is possible
-					if mp_grid_path(grid, path, x - 4, y - 4, alertTarget.x - 4, alertTarget.y - 4, false)
+					if mp_grid_path(global.pathGrid, path, x - 4, y - 4, alertTarget.x - 4, alertTarget.y - 4, false)
 					{
 						path_start(path, 8, path_action_stop, false);
 					}
@@ -157,28 +157,30 @@ if obj_main.gameMode == GAMEMODE.GAMEPLAY
 				}
 				alertTarget = noone;
 			}
+			
+			sprite_index = spriteDir.move[facing]
 			//set sprites for directions
-			if facing == DIR.UP
-			{
-				sprite_index = spr_enemy_hoverbot_up;
-			}
-			if facing == DIR.DOWN
-			{
-				sprite_index = spr_enemy_hoverbot_down;
-			}
-			if facing == DIR.LEFT
-			{
-				sprite_index = spr_enemy_hoverbot_left;
-			}
-			if facing == DIR.RIGHT
-			{
-				sprite_index = spr_enemy_hoverbot_right;
-			}
+			//if facing == DIR.UP
+			//{
+			//	sprite_index = spr_enemy_hoverbot_up;
+			//}
+			//if facing == DIR.DOWN
+			//{
+			//	sprite_index = spr_enemy_hoverbot_down;
+			//}
+			//if facing == DIR.LEFT
+			//{
+			//	sprite_index = spr_enemy_hoverbot_left;
+			//}
+			//if facing == DIR.RIGHT
+			//{
+			//	sprite_index = spr_enemy_hoverbot_right;
+			//}
 		}
 		else
 		{
 			path_end(); //end path after moving one clock tick
-			mp_grid_clear_all(grid); //clear grid so that it can be updated (might be unnecessary)
+			mp_grid_clear_all(global.pathGrid); //clear grid so that it can be updated (might be unnecessary)
 		}
 	}
 	else if mode == MODE.DEAD

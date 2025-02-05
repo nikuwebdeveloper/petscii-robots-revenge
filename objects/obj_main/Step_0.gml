@@ -78,10 +78,10 @@ if global.input.restart
 if switchLayerRead
 {
 	switchLayerRead = false
-	tilemapSand = layer_tilemap_get_id(layer_get_name("layegr_sand"))
-	tilemapSandBridge = layer_tilemap_get_id(layer_get_name("layer_sand_bridge"))
-	tilemapMiddle = layer_tilemap_get_id(layer_get_name("layer_tile_middle"))
-	tilemapWallTop = layer_tilemap_get_id(layer_get_name("layer_tile_wallTop"))
+	tilemapSand = layer_tilemap_get_id(layer_get_id("layegr_sand"))
+	tilemapSandBridge = layer_tilemap_get_id(layer_get_id("layer_sand_bridge"))
+	tilemapMiddle = layer_tilemap_get_id(layer_get_id("layer_tile_middle"))
+	tilemapWallTop = layer_tilemap_get_id(layer_get_id("layer_tile_wallTop"))
 }
 // ???
 // if switchWallDepth

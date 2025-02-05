@@ -35,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_enemy_hoverbot_up",
-    "path":"sprites/spr_enemy_hoverbot_up/spr_enemy_hoverbot_up.yy",
+    "name":"spr_enemy_moverbot_down",
+    "path":"sprites/spr_enemy_moverbot_down/spr_enemy_moverbot_down.yy",
   },
   "spriteMaskId":null,
   "visible":true,
